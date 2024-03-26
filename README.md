@@ -36,8 +36,22 @@ Instructions
 
 ## Contribuer
 
+
 - Yanis Hortholary
 - Maxime Kamara
 - Charles Caulier
 - Damien Legay
+
+## Objectifs de la semaine
+
+------------------------------------------------------
+
+| Nom      | Objectif                                                                                      | Documentation                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| Damien   | Élaborer un squelette de script pour les actions PowerShell et commencer à développer le script | -Commencer la documentation. |
+| Maxime   | Élaborer un squelette de script pour les actions PowerShell et commencer à développer le script | -Commencer à rédiger la documentation.     |
+| Yanis    | Élaborer un squelette de script pour les informations PowerShell et commencer à développer le script | - Commencer à rédiger la documentation. |
+| Charles  | Élaborer un squelette de script pour les informations PowerShell et commencer à développer le script | -Commencer à rédiger la documentation.      |
+
+
 
