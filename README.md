@@ -124,35 +124,35 @@ Pour le choix des serveurs, nous avons :
 
 - ***Serveur 1***
 
-  - **DEBIAN 12**
-        -Nom : **SRVLX01**
-        -Compte : **root**
-        -Mot de passe : **Azerty1***
-        -Adresse IP : **172.16.10.10/24**
+  - **DEBIAN 12**  
+        -Nom : **SRVLX01**  
+        -Compte : **root**  
+        -Mot de passe : **Azerty1***  
+        -Adresse IP : **172.16.10.10/24**  
 
 - ***Serveur 2***
 
-  - **WINDOWS SERVER 2022**
-        -Nom : **SRVWIN01**
-        -Compte : **Administrator**
-        -Mot de passe : **Azerty1***
-        -Adresse IP : **172.16.10.5/24**
+  - **WINDOWS SERVER 2022**  
+        -Nom : **SRVWIN01**  
+        -Compte : **Administrator**  
+        -Mot de passe : **Azerty1***  
+        -Adresse IP : **172.16.10.5/24**  
 
 Pour le choix des postes clients, nous avons :
 
 - ***Poste 1***
-  - **UBUNTU 22.04 LTS**
-        -Nom : **CLILIN01**
-        -Compte : **wilder**
-        -Mot de passe : **Azerty1***
-        -Adresse IP : **172.16.10.30/24**
+  - **UBUNTU 22.04 LTS**  
+        -Nom : **CLILIN01**  
+        -Compte : **wilder**  
+        -Mot de passe : **Azerty1***  
+        -Adresse IP : **172.16.10.30/24**  
 
 - ***Poste 2***
-    -**WINDOWS 10 PRO**
-        -Nom : **CLIWIN01**
-        -Compte **wilder**
-        -Mot de passe : **Azerty1***
-        Adresse IP : **172.16.10.20/24**
+  - **WINDOWS 10 PRO**  
+        -Nom : **CLIWIN01**  
+        -Compte **wilder**  
+        -Mot de passe : **Azerty1***  
+        -Adresse IP : **172.16.10.20/24**  
 
 ### 5. DIFFICULTES TROUVEES  
 
