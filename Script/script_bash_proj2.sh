@@ -8,7 +8,7 @@
 
 #Vérification si l'utilisateur existe
 
-function userExists () {
+function user_exists () {
     if cat /etc/passwd | grep $1
         then
             echo "Utilisateur $1 existe"
@@ -21,26 +21,38 @@ function userExists () {
 
 #Création de compte utilisateur local avec mot de passe :
 
-function createUser () {
-    sudo adduser $1
-    echo "utilisateur $user créé"
-    exit 0
+function create_user () {
+    if sudo adduser $1
+        then
+            echo "utilisateur $user créé"
+            return 0
+    else
+        echo "erreur survenue a la création de $user"
+    fi
 }
 #Changement de mot de passe :
 
 function changeMDP () {
     
-    sudo passwd $1
-    echo "modification $MDP réussi"
-    exit 0
+    if sudo passwd $1
+        then
+            echo "modification $MDP réussi"
+            return 0
+    else
+            echo "Modification échoué"
+    fi
 }
 
 #Suppression de compte utilisateur local :
 
-function delUser () {
-    sudo deluser $1
-    echo "suppression $User réussi"
-    exit 0
+function del_user () {
+    if sudo deluser $1
+        then
+            echo "suppression $User réussi"
+            return 0
+    else
+            echo "Suppression echoué"
+    fi
 }
 
 #Activation de compte utilisateur local :
@@ -206,31 +218,51 @@ function desactiver_pare_feu () {
     echo "désactivation du pare-feu"
     exit 0
 }
+
+#Ajouter un logiciel :
+
+function inst_software () {
+    read -p "Entrer le nom du logiciel a installer :" name_software
+    echo "Installation de $name_software lancé"
+    sudo apt install $name_software
+    return 0
+}
+
+function del_software () {
+    read -p "Entrer le nom du logiciel a désinstaller :" supp_software
+    echo "Désnstallation de $supp_software lancé"
+    sudo apt-get --purge remove $supp_software
+    return 0
+}
 ############################################################################################################
 #####################################   information fonction   #############################################
 ############################################################################################################
 #Date de dernière connexion de l'utilisateur :
 
 function date_derniere_connexion () {
-    lastlog #nom_user
-    echo "Affiche la date de dernière connexion de l'utilisateur"
-    exit 0
+    read -p "Entrez le nom d'utilisateur :" lastlog_user
+    
+    echo "Affiche la date de dernière connexion de lastlog $lastlog_user"
+    lastlog $lastlog_user
+    return 0
 }
 
 #Date de dernière modification du mot de passe :
 
 function date_derniere_modif_mot_de_passe () {
-    chage -l #nom_user
+    read -p "Entrez le nom d'utilisateur :" lastmodif_user
     echo "Affiche la date de dernière modification du mot de passe."
-    exit 0
+    chage -l $lastmodif_user
+    return 0
 }
 
 #    Liste des sessions ouvertes par l'utilisateur :
 
 function liste_sessions_utilisateur () {
-    sudo w -u #nom_user
+    read -p "Entrez "
     echo "Affiche la liste des sessions ouvertes par l'utilisateur"
-    exit 0
+    sudo w -u #nom_user
+    return 0
 }
 
 #    Groupe d'appartenance d'un utilisateur :
