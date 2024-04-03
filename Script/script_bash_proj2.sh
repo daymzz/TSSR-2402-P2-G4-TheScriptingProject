@@ -6,116 +6,193 @@
 #######################################   action fonction   ################################################
 ############################################################################################################
 
+#Vérification si l'utilisateur existe
+
+function user_exists () {
+    if cat /etc/passwd | grep $1
+        then
+            echo "Utilisateur $1 existe"
+            return 0
+    else
+        echo "Veuillez créer cette $1 dans le menu Gestion de compte."
+        return 1
+    fi
+}
+
 #Création de compte utilisateur local avec mot de passe :
 
-function createUser () {
-    sudo adduser $1
-    echo "utilisateur $user créé"
-    exit 0
+function create_user () {
+    if sudo adduser $1
+        then
+            echo "utilisateur $user créé"
+            return 0
+    else
+        echo "erreur survenue a la création de $user"
+    fi
 }
 #Changement de mot de passe :
 
 function changeMDP () {
     
-    sudo passwd $1
-    echo "modification $MDP réussi"
-    exit 0
+    if sudo passwd $1
+        then
+            echo "modification $MDP réussi"
+            return 0
+    else
+            echo "Modification échoué"
+    fi
 }
 
 #Suppression de compte utilisateur local :
 
-function delUser () {
-    sudo deluser $1
-    echo "suppression $User réussi"
-    exit 0
+function del_user () {
+    if sudo deluser $1
+        then
+            echo "suppression $User réussi"
+            return 0
+    else
+            echo "Suppression echoué"
+    fi
+}
+
+#Activation de compte utilisateur local :
+
+function activ_User () {
+    if passwd -S $1
+        then
+            echo "l'$1 est déjà désactivé !"
+            return 0
+    else
+            sudo usermod -U $1
+            echo "activation de $User réussi"
+            return 0
+    fi
 }
 
 #Désactivation de compte utilisateur local :
 
 function desactiv_User () {
-    sudo usermod -L $1
-    echo "désactivation $User réussi"
-    exit 0
+    if passwd -S $1
+        then
+            echo "l'$1 est déjà désactivé !"
+            return 0
+    else
+            sudo usermod -L $1
+            echo "désactivation $User réussi"
+            return 0
+    fi
+
 }
 
 #Ajout à un groupe d'administrateur :
-
+#-nG affiche les noms de tous les groupes auxquels appartient l'utilisateur
 function add_admin () {
-    sudo usermod -aG sudo $1
-    echo "ajout de $User en tant que administrateur"
-    exit 0
+    if id -nG $1 | grep -qw sudo
+        then
+        echo "Cette utilisateur est déja dans le groupe administrateur."
+        return 1
+    else
+        sudo usermod -aG sudo $1
+        echo "ajout de $User en tant que administrateur"
+        return 0
+    fi
 }
 
 #Ajout à un groupe local :
 
 function add_Grp_local () {
-    sudo usermod -aG "nom de groupe" $1
-    echo "ajout de $User au groupe local"
-    exit 0
+    if id -nG $1 | grep -qw users 
+        then
+        echo "Cette utilisateur est déjà dans le groupe local"
+        return 1
+    else
+        sudo usermod -aG users $1
+        echo "ajout de $User au groupe local"
+        return 0
+    fi
 }
 
 #Sortie d'un groupe local :
 
 function sortie_Grp_local () {
-    sudo deluser $User "nom de groupe"
-    echo "sortie de $User du groupe local"
-    exit 0
+    if ! ( id -nG $1 | grep -qw users )
+        then
+        echo "Cette utilisateur n'est pas dans le groupe local"
+        return 0
+    else
+        sudo deluser $User "nom de groupe"
+        echo "sortie de $User du groupe local"
+        return 0
+    fi
 }
 
 #Arrêt de l'ordinateur :
 
 function stop_ordi () {
+    echo "Arrêt de l'ordinateur client"
+    sleep 3
     sudo shutdown -h now
-    echo "arrêt de l'ordinateur client"
-    exit 0
+    return 0
 }
 
 #Redémarrage de l'ordinateur :
 
 function restart_ordi () {
+    echo "L'ordinateur va redémarrer"
+    sleep 3
     sudo reboot
-    echo "redémarre l'ordinateur"
-    exit 0
+    return 0
 }
 
 #Verrouillage de l'ordinateur :
 
 function verrouiller_ordi () {
-    sudo systemctl suspend
-    echo "met l'ordinateur en veille"
-    exit 0
+    echo "L'ordinateur va être en veille"
+    sleep 3
+    sudo systemctl suspend   
+    return 0
 }
 
 #Mise à jour du système :
 
 function maj_systeme () {
+    echo "Mise à jour du système lancé"
+    sleep 3
     sudo apt update && sudo apt upgrade -y
-    echo "mise à jour du système"
-    exit 0
+    return 0
 }
 
 #Création de répertoire :
 
 function create_directory () {
-    mkdir "nom repertoire"
+    read -p "Entrez le nom du dossier a créer :" create_dossier
+    mkdir $create_dossier
     echo "creation du repertoire"
-    exit 0
+    return 0
 }
 
 #Modification de répertoire :
 
 function modify_directory () {
-    mv #<ancien_nom> <nouveau nom>
-    echo "modification du répertoire"
-    exit 0
+    read -p "Entrez le nom de dossier a modifier : " mod_dossier
+    if mv $mod_dossier #<nouveau nom>
+        then
+            echo "modification du répertoire"
+        return 0
+    else
+        echo "le dossier $mod_dossier n'existe pas!"
+        return 1
+    fi
 }
 
 #Suppression de répertoire :
 
 function del_directory () {
-    rm -r #nom_repertoire
+    real -p "Entrez le nom du dossier a supprimé :" del_dossier
+    rm -r del_dossier
+    sleep 2
     echo "suppression du répertoire"
-    exit 0
+    return 0
 }
 
 #Prise de main à distance de l'ordinateur client :
@@ -141,31 +218,51 @@ function desactiver_pare_feu () {
     echo "désactivation du pare-feu"
     exit 0
 }
+
+#Ajouter un logiciel :
+
+function inst_software () {
+    read -p "Entrer le nom du logiciel a installer :" name_software
+    echo "Installation de $name_software lancé"
+    sudo apt install $name_software
+    return 0
+}
+
+function del_software () {
+    read -p "Entrer le nom du logiciel a désinstaller :" supp_software
+    echo "Désnstallation de $supp_software lancé"
+    sudo apt-get --purge remove $supp_software
+    return 0
+}
 ############################################################################################################
 #####################################   information fonction   #############################################
 ############################################################################################################
 #Date de dernière connexion de l'utilisateur :
 
 function date_derniere_connexion () {
-    lastlog #nom_user
-    echo "Affiche la date de dernière connexion de l'utilisateur"
-    exit 0
+    read -p "Entrez le nom d'utilisateur :" lastlog_user
+    
+    echo "Affiche la date de dernière connexion de lastlog $lastlog_user"
+    lastlog $lastlog_user
+    return 0
 }
 
 #Date de dernière modification du mot de passe :
 
 function date_derniere_modif_mot_de_passe () {
-    chage -l #nom_user
+    read -p "Entrez le nom d'utilisateur :" lastmodif_user
     echo "Affiche la date de dernière modification du mot de passe."
-    exit 0
+    chage -l $lastmodif_user
+    return 0
 }
 
 #    Liste des sessions ouvertes par l'utilisateur :
 
 function liste_sessions_utilisateur () {
-    sudo w -u #nom_user
+    read -p "Entrez "
     echo "Affiche la liste des sessions ouvertes par l'utilisateur"
-    exit 0
+    sudo w -u #nom_user
+    return 0
 }
 
 #    Groupe d'appartenance d'un utilisateur :
