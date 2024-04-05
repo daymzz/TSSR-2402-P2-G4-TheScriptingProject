@@ -22,7 +22,7 @@ function user_exists () {
 #Création de compte utilisateur local avec mot de passe :
 
 function create_user () {
-    if sudo adduser $1
+    if sudo useradd $1
         then
             echo "utilisateur $user créé"
             return 0
@@ -30,6 +30,14 @@ function create_user () {
         echo "erreur survenue a la création de $user"
     fi
 }
+
+#ajouter un mot de passe :
+
+function add_Mdp () {
+    sudo passwd $1
+    echo "ajouter un passe"
+}
+
 #Changement de mot de passe :
 
 function changeMDP () {
@@ -75,10 +83,10 @@ function desactiv_User () {
     if passwd -S $1
         then
             echo "l'$1 est déjà désactivé !"
-            return 0
+            return 1
     else
             sudo usermod -L $1
-            echo "désactivation $User réussi"
+            echo "désactivation $1 réussi"
             return 0
     fi
 
@@ -259,72 +267,111 @@ function date_derniere_modif_mot_de_passe () {
 #    Liste des sessions ouvertes par l'utilisateur :
 
 function liste_sessions_utilisateur () {
-    read -p "Entrez "
+    ################################################################a revoir###########################################################################
+    read -p "Entrez le nom d'utilisateur :" user_session
     echo "Affiche la liste des sessions ouvertes par l'utilisateur"
-    sudo w -u #nom_user
+    w -u $user_session
     return 0
 }
 
 #    Groupe d'appartenance d'un utilisateur :
 
 function groupe_appartenance_utilisateur () {
-    groups #nom_user
-    echo "Affiche le groupe d'appartenance de l'utilisateur"
-    exit 0
+    read -p "Entrez le nom d'utilisateur :" grp_user
+    if groups $grp_user
+        then
+            echo "Affiche le groupe d'appartenance de $grp_user"
+        return 0
+    else
+            echo "Impossible d' afficher le groupe d'appartenance de $grp_user"
+        return 1
+    fi
 }
 
 #    Historique des commandes exécutées par l'utilisateur :
 
 function history_cmd_User () { 
-    history | grep #nom_user
-    echo "Affiche l'historique des commandes exécutées par l'utilisateur"
-    exit 0
+    if history
+        then
+            echo "Affichage de l'historique des commandes exécutées par l'utilisateur"
+        return 0
+    else
+        echo "impossible d'afficher l'historique"
+        return 1
+    fi
 }
 
 #Droits et permissions de l'utilisateur sur un dossier :
 
 function droits_permissions_dossier () {
-    ls -ld #/chemin/du/dossier
-    echo "Affiche les droits et permissions de l'utilisateur sur le dossier"
-    exit 0
+    read -p "Entrez le chemin du dossier, ex: /home/user/repertoire/dossier" road_directory
+    if ls -ld $road_directory
+        then
+            echo "Affiche les droits et permissions de l'utilisateur sur le dossier"
+            return 0
+    else
+            echo "Impossible de verifier! Assurez vous que le chemin est correct."
+            return 1
+    fi
 }
 
 #    Droits et permissions de l'utilisateur sur un fichier :
 
 function droits_permissions_fichier () {
-    ls -l #chemin/du/fichier
-    echo "Affiche les droits et permissions de l'utilisateur sur le fichier"
-    exit 0
+    read -p "Entrez le chemin du fichier, ex: /home/user/directory/file.txt" road_file
+    if ls -ld $road_file
+        then
+            echo "Affiche les droits et permissions de l'utilisateur sur le fichier"
+            return 0
+    else
+            echo "Impossible de verifier! Assurez vous que le chemin est correct."
+            return 1
+    fi
 }
 
 #Version de l'OS de l'ordinateur client :
 
 function version_os () {
-    lsb_release -a
-    echo "Affiche la version de l'os du client"
-    exit 0
+    if lsb_release -a
+        then 
+            echo "Affichage de la version de l'os du client"
+            return 0
+    else
+            echo "Impossible d'afficher l'OS"
+            return 1
+    fi
 }
 
 #Nombre de disques de l'ordinateur client :
 
 function nombre_disques () {
-    lsblk | grep disk | wc -l
-    echo "Affiche le nombre de disque du client"
-    exit 0
+    if lsblk | grep disk | wc -l
+        then
+            echo "Affiche le nombre de disque du client"
+            return 0
+    else
+            echo "Impossible d'afficher le nombre de disque"
+            return 1
+    fi
 }
 
 #Partition par disque de l'ordinateur client :
 
 function partition_par_disque () {
-    sudo fdisk -l
-    echo "Affiche les informations sur les partitions par disque du client"
-    exit 0
+    if lsblk | grep sd
+        then
+            echo "Affichage des informations sur les partitions par disque du client"
+            return 0
+    else
+            echo "Impossible d'afficher"
+            return 1
+    fi
 }
 
 #Nom et espace disque d'un dossier :
 
 function espace_disque_dossier () {
-    du -sh #/chemin/du/dossier
+    df -h #/chemin/du/dossier
     echo "Affiche le nom et l'espace disque du dossier"
     exit 0
 }
@@ -399,7 +446,7 @@ function optionInformation()
 #menu gestion ou information
 
  while true; do
-    option
+    optionGestion
     read -p "Inserer le numéro de l'option : " choix    
 
     case $choix in
@@ -420,31 +467,31 @@ function optionInformation()
 
                 case $gestCompte in
                     1)  
-                        echo "Créer un utilisateur"
+                        create_user
                         # Ajouter code créer un utilisateur
                         ;;
                     2)  
-                        echo "Changer le mot de passe d'un utilisateur"
+                        changeMDP
                         # Ajouter code changer le mot de passe
                         ;;
                     3)  
-                        echo "Supprimer un utilisateur"
+                        del_user
                         # Ajouter code supprimer un utilisateur
                         ;;
                     4)  
-                        echo "Désactiver un compte utilisateur"
+                        desactiv_User
                         # Ajouter code désactiver un compte utilisateur
                         ;;
                     5)  
-                        echo "Ajouter à un groupe d'administrateur"
+                        add_admin
                         # Ajouter code ajout à un groupe d'administrateur
                         ;;
                     6)  
-                        echo "Ajouter à un groupe local"
+                        add_Grp_local
                         # Ajouter code ajout à un groupe local
                         ;;
                     7)  
-                        echo "Sortir d'un groupe local"
+                        sortie_Grp_local
                         # Ajouter code sortir d'un groupe local
                         ;;
                     8)  
@@ -478,51 +525,52 @@ function optionInformation()
 
                 case $gestSystem in
                     1)  
-                        echo "1. arrêt de l'ordinateur"
+                        stop_ordi
                         # Ajouter code arrêt de l'ordi
                         ;;
                     2)  
-                        echo "2. redémarrage"
+                        restart_ordi
                         # Ajouter code redémarrage
                         ;;
                     3)  
-                        echo "3. verrouillage"
+                        verrouiller_ordi
                         # Ajouter code verrouillage
                         ;;
                     4)  
-                        echo "4. mise-à-jour du système"
+                        maj_systeme
                         # Ajouter code maj du système
                         ;;
                     5)  
-                        echo "5. création de répertoire"
+                        create_directory
                         # Ajouter code création de répertoire
                         ;;
                     6)  
-                        echo "6. modification de répertoire"
+                        modify_directory
                         # Ajouter code modification répertoire
                         ;;
                     7)  
-                        echo "7. suppression de répertoire"
+                        del_directory
                         # Ajouter code suppression de répertoire
                         ;;
                     8)  
-                        echo "8. activation du pare-feu"
+                        activer_pare_feu
                         # Ajouter code activation du pare-feu 
                         ;;
                     9)  
-                        echo "9. désactivation du pare-feu"
+                        desactiver_pare_feu
                         # Ajouter code Désactivation du pare-feu
                         ;;
                     10)
-                        echo "10. installation de logiciel"
+                        inst_software
                         # Ajouter code installation de logiciel
                         ;;
                     11)
-                        echo "11. désinstallation de logiciel"
+                        del_software
                         # Ajouter code désinstallation de logiciel
                         ;;
                     12)
                         echo "12. Revenir au menu principal"
+                        break
                         ;;
                     *)
                         echo "Option invalide. Veuillez choisir une option valide."
@@ -575,6 +623,7 @@ function optionInformation()
                         ;;
                     8)  
                         echo "8. Revenir au menu principal"
+                        break
                         # Ajouter code activation du pare-feu 
                         ;;
                     *)
@@ -650,6 +699,7 @@ function optionInformation()
                         ;;
                     12)
                         echo "12. Revenir au menu principal"
+                        break
                         ;;
                     *)
                         echo "Option invalide. Veuillez choisir une option valide."
@@ -677,6 +727,7 @@ function optionInformation()
                         ;;
                     3)
                         echo "3. Revenir au menu principal"
+                        break
                         ;;
                     *)
                         echo "Option invalide. Veuillez choisir une option valide."
@@ -693,3 +744,4 @@ function optionInformation()
             ;;
     esac
 done
+
