@@ -50,14 +50,89 @@
 #Write-Host $resultat  <---- Write-host equivaut a echo en bash
 
 #menu gestion ou information
-                            #1menu de gestion
-                                #a-gestion compte
-                                #b-gestion groupe
-                                #c-gestion systeme
-                                #d-gestion repertoire
-                                #e-gestion securité
-                                #f-gestion logiciel
-                                #g-gestion bureau a distance
+
+                            function Afficher-Menu {
+    Clear-Host
+    Write-Host "==============="
+    Write-Host "Menu de Gestion"
+    Write-Host "==============="
+    Write-Host "A - Gestion Compte"
+    Write-Host "B - Gestion Groupe"
+    Write-Host "C - Gestion Système"
+    Write-Host "D - Gestion Répertoire"
+    Write-Host "E - Gestion Sécurité"
+    Write-Host "F - Gestion Logiciel"
+    Write-Host "G - Gestion Bureau à Distance"
+    Write-Host "H - Quitter"
+}
+
+         # Boucle principale du menu
+do {
+    Afficher-Menu
+    $choix = Read-Host "Entrez votre choix"
+
+    switch ($choix) {
+        # Menu pour la gestion des comptes
+        'A' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Compte"
+           
+            Pause
+        }
+        # Menu pour la gestion des groupes
+        'B' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Groupe"
+            
+            Pause
+        }
+        # Menu pour la gestion du système
+        'C' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Système"
+            # Ajoutez ici votre code pour la gestion du système
+            Pause
+        }
+        # Menu pour la gestion des répertoires
+        'D' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Répertoire"
+           
+            Pause
+        }
+        # Menu pour la gestion de la sécurité
+        'E' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Sécurité"
+         
+            Pause
+        }
+        # Menu pour la gestion des logiciels
+        'F' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Logiciel"
+            
+            Pause
+        }
+        # Menu pour la gestion du Bureau à Distance
+        'G' { 
+            Clear-Host
+            Write-Host "Vous avez choisi Gestion Bureau à Distance"
+            
+            Pause
+            
+        # Menu pour Quitter
+        }
+        'Q' {
+            Write-Host "Au revoir !"
+            break
+        }
+        default {
+            Write-Host "Choix invalide, veuillez réessayer."
+            Pause
+        }
+    }
+} while ($choix -ne 'q')
 
                             #2menu information
                                 #a-info user
