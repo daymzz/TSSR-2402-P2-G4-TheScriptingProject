@@ -51,7 +51,17 @@
 
 #menu gestion ou information
 
-                            function Afficher-Menu {
+function Afficher-MenuPrincipal {
+    Clear-Host
+    Write-Host "=============="
+    Write-Host "Menu Principal"
+    Write-Host "=============="
+    Write-Host "1 - Menu Action"
+    Write-Host "2 - Menu Information"
+    Write-Host "Q - Quitter"
+}
+
+function MenuAction {
     Clear-Host
     Write-Host "==============="
     Write-Host "Menu de Gestion"
@@ -63,12 +73,12 @@
     Write-Host "E - Gestion Sécurité"
     Write-Host "F - Gestion Logiciel"
     Write-Host "G - Gestion Bureau à Distance"
-    Write-Host "H - Quitter"
+    Write-Host "Q - Quitter"
 }
 
-         # Boucle principale du menu
+# Boucle principale du menu de gestion
 do {
-    Afficher-Menu
+    MenuAction  # Correction du nom de la fonction
     $choix = Read-Host "Entrez votre choix"
 
     switch ($choix) {
@@ -124,7 +134,7 @@ do {
         # Menu pour Quitter
         }
         'Q' {
-            Write-Host "Au revoir !"
+            Write-Host "A bientôt !"
             break
         }
         default {
@@ -132,7 +142,8 @@ do {
             Pause
         }
     }
-} while ($choix -ne 'q')
+} while ($choix -ne 'Q')
+
 
                             #2menu information
                                 #a-info user
