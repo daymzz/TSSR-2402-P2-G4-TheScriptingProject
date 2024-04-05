@@ -61,80 +61,71 @@ function Afficher-MenuPrincipal {
     Write-Host "Q - Quitter"
 }
 
-function MenuAction {
+function Afficher-Menu {
     Clear-Host
     Write-Host "==============="
     Write-Host "Menu de Gestion"
     Write-Host "==============="
-    Write-Host "A - Gestion Compte"
-    Write-Host "B - Gestion Groupe"
-    Write-Host "C - Gestion Système"
-    Write-Host "D - Gestion Répertoire"
-    Write-Host "E - Gestion Sécurité"
-    Write-Host "F - Gestion Logiciel"
-    Write-Host "G - Gestion Bureau à Distance"
-    Write-Host "Q - Quitter"
+    Write-Host "a - Gestion Compte"
+    Write-Host "b - Gestion Groupe"
+    Write-Host "c - Gestion Système"
+    Write-Host "d - Gestion Répertoire"
+    Write-Host "e - Gestion Sécurité"
+    Write-Host "f - Gestion Logiciel"
+    Write-Host "g - Gestion Bureau à Distance"
+    Write-Host "q - Quitter"
 }
 
-# Boucle principale du menu de gestion
+# Boucle principale du menu
 do {
-    MenuAction  # Correction du nom de la fonction
+    Afficher-Menu
     $choix = Read-Host "Entrez votre choix"
 
     switch ($choix) {
-        # Menu pour la gestion des comptes
-        'A' { 
+        'a' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Compte"
-           
+            # Gestion des comptes
             Pause
         }
-        # Menu pour la gestion des groupes
-        'B' { 
+        'b' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Groupe"
-            
+            # Ajoutez ici votre code pour la gestion des groupes
             Pause
         }
-        # Menu pour la gestion du système
-        'C' { 
+        'c' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Système"
             # Ajoutez ici votre code pour la gestion du système
             Pause
         }
-        # Menu pour la gestion des répertoires
-        'D' { 
+        'd' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Répertoire"
-           
+            # Ajoutez ici votre code pour la gestion des répertoires
             Pause
         }
-        # Menu pour la gestion de la sécurité
-        'E' { 
+        'e' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Sécurité"
-         
+            # Ajoutez ici votre code pour la gestion de la sécurité
             Pause
         }
-        # Menu pour la gestion des logiciels
-        'F' { 
+        'f' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Logiciel"
-            
+            # Ajoutez ici votre code pour la gestion des logiciels
             Pause
         }
-        # Menu pour la gestion du Bureau à Distance
-        'G' { 
+        'g' { 
             Clear-Host
             Write-Host "Vous avez choisi Gestion Bureau à Distance"
-            
+            # Ajoutez ici votre code pour la gestion du Bureau à Distance
             Pause
-            
-        # Menu pour Quitter
         }
-        'Q' {
-            Write-Host "A bientôt !"
+        'q' {
+            Write-Host "See you soon !"
             break
         }
         default {
@@ -142,7 +133,14 @@ do {
             Pause
         }
     }
-} while ($choix -ne 'Q')
+} while ($choix -ne 'q')
+
+function Pause {
+    Write-Host ""
+    Write-Host "Appuyez sur Entrée pour revenir au menu..."
+    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+}
+
 
 
                             #2menu information
