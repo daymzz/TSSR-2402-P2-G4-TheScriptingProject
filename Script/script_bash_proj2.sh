@@ -8,34 +8,36 @@
 
 #Vérification si l'utilisateur existe
 
-function user_exists () {
-    if cat /etc/passwd | grep $1
-        then
-            echo "Utilisateur $1 existe"
-            return 0
-    else
-        echo "Veuillez créer cette $1 dans le menu Gestion de compte."
-        return 1
-    fi
-}
+#function user_exists () {
+#    if cat /etc/passwd | grep $1
+#        then
+#            echo "Utilisateur $1 existe"
+#            return 0
+#    else
+#        echo "Veuillez créer cette $1 dans le menu Gestion de compte."
+#        return 1
+#    fi
+#}
 
 #Création de compte utilisateur local avec mot de passe :
 
 function create_user () {
     read -p "Entrez le nom de l'utilisateur a créer :" user
-    if sudo useradd $user 
+    if cat /etc/passwd | grep "$user" 
         then
+        echo "L'ustilisateur $user existe"
+    else
+
+                    sudo useradd $user 
             echo "utilisateur $user créé"
             return 0
-    else
-        echo "erreur survenue a la création de $user"
     fi
 }
 
 #ajouter un mot de passe :
 
 function add_Mdp () {
-    read -p "Entrez le nom d'utilisateur dà ajouter un mot de passe :" add_MDP_user
+    read -p "Entrez le nom d'utilisateur a ajouter un mot de passe :" add_MDP_user
     sudo passwd $add_MDP_user
     sleep 2
     echo "ajout de mot de passe reussi"
@@ -45,23 +47,51 @@ function add_Mdp () {
 
 function changeMDP () {
     read -p "Entrez le nom d'utilisateur du mot de passe à modifier : " userMDP
-    
-    if sudo passwd $userMDP
-        then
-            echo "modification $userMDP réussi"
-            return 0
-    else
-            echo "Modification échoué"
-    fi
+        #on recherche si l'utilisateur existe
+        if cat /etc/passwd | grep "$userMDP"
+            then
+                while true; do
+
+                    # Demander le nouveau mot de passe
+                    read -s "Entrez le nouveau mot de passe : " new_pass
+                    read -s new_password
+
+                    # Confirmer le nouveau mot de passe
+                    read -s "Confirmez le nouveau mot de passe : " confirm_pass
+
+                    # Vérifier si les mots de passe correspondent
+                    if [ "$new_pass" != "$confirm_pass" ]; 
+                        then
+                        echo "Les mots de passe ne correspondent pas. Veuillez réessayer."
+                        continue
+                    fi
+
+                    # Changer le mot de passe
+                    if changeMDP "$userMDP" "$new_password"; then
+                        break
+                    fi
+
+                    # Renvoyer au choix du mot de passe
+                    read -p "Voulez-vous réessayer ? (O/N)" rep_change_MDP
+
+                    if [ "$rep_change_MDP" != "O" ]; then
+                        break
+                    fi
+                done
+        else 
+            echo "Utilisateur $userMDP n'existe pas"
+            return 1
+        fi
 }
 
 #Suppression de compte utilisateur local :
 
 function del_user () {
-       read -p "Entrez le nom d'utilisateur à supprimer : " supp_user
+       read -p "Entrez le nom d'utilisateur à supprimer : " suppr_user
     sleep 1
     read -p "Voulez-vous vraiment supprimer le compte utilisateur $suppr_user ? (O/N)" delrep
     sleep 3
+    # si reponse de confirmation est egale a O 
     if [ "$delrep" == "O" ]
         then
             echo "suppression $suppr_user réussi"
@@ -70,35 +100,7 @@ function del_user () {
             echo "Suppression echoué"
             return1
     fi
-    while true; do
 
-            # Demander le nouveau mot de passe
-            read -s "Entrez le nouveau mot de passe : " new_pass
-            read -s new_password
-
-            # Confirmer le nouveau mot de passe
-            read -s "Confirmez le nouveau mot de passe : " confirm_pass
-
-            # Vérifier si les mots de passe correspondent
-            if [ "$new_pass" != "$confirm_pass" ]; 
-                then
-                echo "Les mots de passe ne correspondent pas. Veuillez réessayer."
-                continue
-            fi
-
-            # Changer le mot de passe
-            if changeMDP "$suppr_user" "$new_password"; then
-                break
-            fi
-
-            # Renvoyer au choix du mot de passe
-            read -p "Voulez-vous réessayer ? (O/N)" rep_change_MDP
-
-            if [ "$rep_change_MDP" != "O" ]; then
-                break
-            fi
-
-    done
 }
 
 #Activation de compte utilisateur local :
@@ -108,6 +110,9 @@ function activ_User () {
     if id "$activer_user" &>/dev/null; 
         then
         # Vérifie si l'utilisateur est déjà activé
+        # l'option -S demande des informations sur le mot de passe
+        #l'option -q naffichera pas le resultats de la recherhce
+        # la lettre 'P' est utilisée pour vérifier l'état du mot de passe
         if sudo passwd -S "$activer_user" | grep -q 'P'; then
             echo "L'utilisateur $activer_user est déjà activé !"
             return 1
@@ -127,11 +132,13 @@ function activ_User () {
 
 function desactiv_User () {
     read -p "Entrer le nom d'utilisateur a désactiver :" desactiver_user
+    # l'option -S demande des informations sur l'utilisateur
     if passwd -S $desactiver_user
         then
             echo "l'$desactiver_user est déjà désactivé !"
             return 1
     else
+            #-L l'option qui verrouille le compte
             sudo usermod -L $desactiver_user
             echo "désactivation $desactiver_user réussi"
             return 0
@@ -143,11 +150,14 @@ function desactiv_User () {
 #-nG affiche les noms de tous les groupes auxquels appartient l'utilisateur
 function add_admin () {
     read -p "Entrer le nom d'utilisateur a ajouter en administrateur :" admin_add_user
+    #l'option -nG pour afficher uniquement les noms des groupes et 
+    # -qw Mode silencieux et s'assure qu'il es un mot entier
     if id -nG $admin_add_user| grep -qw sudo
         then
         echo "Cette utilisateur est déja dans le groupe administrateur."
         return 1
     else
+        # l-option -a ajoute au -G groupe indiqué apres
         sudo usermod -aG sudo $admin_add_user
         echo "ajout de $admin_add_user en tant que administrateur"
         return 0
@@ -158,11 +168,13 @@ function add_admin () {
 
 function add_Grp_local () {
     read -p "Entrer le nom d'utilisateur a ajouter au groupe local :" user_add_grp
+    # l'option -nG pour afficher uniquement les noms groupes
     if id -nG $user_add_grp | grep -qw users 
         then
         echo "Cette utilisateur est déjà dans le groupe local"
         return 1
     else
+    # l-option -a ajoute au -G groupe indiqué apres
         sudo usermod -aG users $user_add_grp
         echo "ajout de $user_add_grp au groupe local"
         return 0
@@ -173,6 +185,7 @@ function add_Grp_local () {
 
 function sortie_Grp_local () {
     read -p "Entrer le nom d'utilisateur a sortir du groupe local :" leave_grp
+    # l'option -nG pour afficher uniquement les noms groupes
     if ! ( id -nG $leave_grp | grep -qw users )
         then
         echo "Cette utilisateur n'est pas dans le groupe local"
@@ -189,6 +202,7 @@ function sortie_Grp_local () {
 function stop_ordi () {
     echo "Arrêt de l'ordinateur client"
     sleep 3
+    # l'option -h indique a la commande d'arreter le systeme l'option now maintenant
     sudo shutdown -h now
     return 0
 }
@@ -282,6 +296,7 @@ function desactiver_pare_feu () {
 function inst_software () {
     read -p "Entrer le nom du logiciel a installer :" name_software
     echo "Installation de $name_software lancé"
+    sleep 1
     sudo apt install $name_software
     return 0
 }
@@ -794,3 +809,4 @@ function optionInformation()
             ;;
     esac
 done
+
