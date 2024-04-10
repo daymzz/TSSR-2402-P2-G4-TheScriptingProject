@@ -318,7 +318,7 @@ function gestion_information() {
         clear
         read -p "Entrez le nom d'utilisateur : " user_session
         echo "Affiche la liste des sessions ouvertes par $user_session"
-        ssh $utilisateur@$ip "w -u $user_session"
+        ssh $utilisateur@$ip "last $user_session"
     }
 
     # Groupe d'appartenance d'un utilisateur
@@ -342,7 +342,7 @@ function gestion_information() {
         clear
         read -p "Entrez le chemin du fichier, ex: /home/user/directory/file.txt : " road_file
         echo "Affiche les droits et permissions sur le fichier $road_file"
-        ssh $utilisateur@$ip "ls -l \"$road_file\""
+        ssh $utilisateur@$ip "ls -ld \"$road_file\""
     }
 
     # Version de l'OS, nombre de disques, partitions, etc.
@@ -369,7 +369,7 @@ function gestion_information() {
 
     function espace_disque_dossier () {
         clear
-        ssh $utilisateur@$ip "df -h #/chemin/du/dossier"
+        ssh $utilisateur@$ip "du -sh #/chemin/du/dossier"
         echo "Affiche le nom et l'espace disque du dossier"
         
     }
@@ -387,7 +387,7 @@ function gestion_information() {
 
     function interfaces_ip () {
         clear
-        ssh $utilisateur@$ip "sudo -S netstat -i | --interfaces && ip addr" #a verifier 
+        ssh $utilisateur@$ip "sudo -S netstat -i && ip addr" #a verifier 
         echo "Affiche le nombre d'interfaces et leur adresse ip"
         
     }
@@ -396,7 +396,7 @@ function gestion_information() {
 
     function ports_ouverts () {
         clear
-        ssh $utilisateur@$ip "sudo netstat -l | --listening && ip addr"
+        ssh $utilisateur@$ip "sudo netstat -an | grep LISTEN"
         echo "Affiche la liste des ports ouverts"
         
     }
@@ -519,3 +519,6 @@ case $choix in
     *) echo "Option non valide !?!?!?" ;;
 esac
 done
+
+
+
