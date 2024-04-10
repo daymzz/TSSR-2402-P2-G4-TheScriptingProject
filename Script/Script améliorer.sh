@@ -299,9 +299,8 @@ function gestion_information() {
     # Date de dernière connexion
     function date_derniere_connexion() {
         clear
-        read -p "Entrez le nom d'utilisateur : " lastlog_user
-        echo "Affiche la date de dernière connexion de $lastlog_user"
-        ssh $utilisateur@$ip "sudo -S lastlog $lastlog_user"
+        echo "Affiche la date de dernière connexion"
+        ssh $utilisateur@$ip "sudo -S w -u"
         sleep 5
         return 
     }
@@ -309,6 +308,7 @@ function gestion_information() {
     # Date de dernière modification du mot de passe
     function date_derniere_modif_mot_de_passe() {
         clear
+        lastmodif_user=""
         read -p "Entrez le nom d'utilisateur : " lastmodif_user
         echo "Affiche la date de dernière modification du mot de passe pour $lastmodif_user"
         ssh $utilisateur@$ip "sudo -S chage -l $lastmodif_user"
@@ -319,6 +319,7 @@ function gestion_information() {
     # Liste des sessions ouvertes par l'utilisateur
     function liste_sessions_utilisateur() {
         clear
+        user_session=""
         read -p "Entrez le nom d'utilisateur : " user_session
         echo "Affiche la liste des sessions ouvertes par $user_session"
         ssh $utilisateur@$ip "w -u $user_session"
@@ -329,6 +330,7 @@ function gestion_information() {
     # Groupe d'appartenance d'un utilisateur
     function groupe_appartenance_utilisateur() {
         clear
+        grp_user=""
         read -p "Entrez le nom d'utilisateur : " grp_user
         echo "Affiche le groupe d'appartenance de $grp_user"
         ssh $utilisateur@$ip "groups $grp_user"
@@ -339,6 +341,7 @@ function gestion_information() {
     # Droits et permissions sur un dossier
     function droits_permissions_dossier() {
         clear
+        road_directory=""
         read -p "Entrez le chemin du dossier, ex: /home/user/repertoire/dossier : " road_directory
         echo "Affiche les droits et permissions sur le dossier $road_directory"
         ssh $utilisateur@$ip "ls -ld \"$road_directory\""
@@ -349,6 +352,7 @@ function gestion_information() {
     # Droits et permissions sur un fichier
     function droits_permissions_fichier() {
         clear
+        road_file=""
         read -p "Entrez le chemin du fichier, ex: /home/user/directory/file.txt : " road_file
         echo "Affiche les droits et permissions sur le fichier $road_file"
         ssh $utilisateur@$ip "ls -l \"$road_file\""
