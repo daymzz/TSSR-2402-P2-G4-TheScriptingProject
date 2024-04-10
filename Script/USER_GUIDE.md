@@ -62,4 +62,26 @@ Si le problème persiste, consultez la documentation avancée ou contactez le su
 ### Conclusion
 
 La documentation de base fournie ici devrait vous permettre d'installer, de configurer et d'utiliser le script pour exécuter des actions à distance sur un PC. Pour des instructions plus avancées, veuillez vous référer à la documentation avancée.
+
+
 ## **3. Découvrir les fonctionnalités du script**
+
+
+Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
+
+
+
+Comme visible à l'image ci dessus vous avez le choix entre 2 menu.
+
+
+
+Le premier menu "Action" vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
+
+
+
+
+Le deuxième menu "Informations" vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
+
+
+
+Explorons pour commencer le menu "Action"
