@@ -19,6 +19,6 @@ Dernière mise à jour du Document : **10 Avril 2024**
 5. FAQ
 
 
-## **  1. Prérequis**
-## **  2. Démarrage et première connexion**
-## **  3. Découvrir les fonctionnalités du script**
+## **1. Prérequis**
+## **2. Démarrage et première connexion**
+## **3. Découvrir les fonctionnalités du script**
