@@ -83,18 +83,18 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
 - RÔLE
 
-    |      SM       |        PO        |
-    |     :---:     |       :---:      |
-    |               |                  |  
+    |         SM       |        PO        |
+    |        :---:     |       :---:      |
+    | HORTHOLARY Yanis |    KAMARA Maxime |  
 
 - TÂCHES
 
-    |     *MEMBRE*     |            *TÂCHES*            |
-    |       :---:      |              :---:             |
-    |  CAULIER Charles |                                |
-    | HORTHOLARY Yanis |                                |
-    |   KAMARA Maxime  |                                |
-    |   LEGAY Damien   |                                |  
+    |     *MEMBRE*     |                                     *TÂCHES*                                  |
+    |       :---:      |                                      :---:                                    |
+    |  CAULIER Charles |            Gestion des fichiers logs et test code bash , Powershell           |
+    | HORTHOLARY Yanis |           Documentation, test et finilasation du code bash , Powershell       |
+    |   KAMARA Maxime  |           Documentation, implémentation du ssh, test du code bash, Powershell |
+    |   LEGAY Damien   |           Documentation,  test et finilasation du code bash, Powershell       |  
 
 ***SEMAINE 4***
 
@@ -156,11 +156,35 @@ Pour le choix des postes clients, nous avons :
 
 ### 5. DIFFICULTES TROUVEES  
 
-___
+#### Configuration réseau : 
+- Des problèmes liés à la configuration réseau peuvent gêner la communication à distance entre les machines, notamment par le pare-feux, la configurations réseau complexes.
+
+#### Sécurité et authentification :
+- Configurer correctement l'authentification à distance peut être un difficile, en particulier pour garantir que seules les personnes autorisées ont accès aux machines distantes. Cela peut impliquer la gestion des clés SSH et des commandes Windows.
+
+#### Gestion des erreurs et débogage :
+- Identifier et résoudre les erreurs lors de l'exécution de commandes à distance peut être complexe, en particulier lorsqu'il y a des problèmes de communication ou de configuration. Lister, réessayer, modifier : ceci peut prendre énormément de temps.
+
+#### Évolutivité et gestion du Script : 
+- À mesure que script évolue et grandit, la gestion et la maintenance de l'infrastructure devient plus complexes. Il est essentiel de mettre en place des pratiques et des règles pour gérer efficacement son environnement.
+
+#### Documentation et traçabilité : 
+- Maintenir une documentation complète et à jour sur la configuration, les procédures et les problèmes rencontrés est essentiel pour assurer la traçabilité des actions effectuées à distance et faciliter la résolution des problèmes futurs.
+
 
 ### 6. SOLUTIONS TROUVEES  
 
-___
+#### Configuration réseau :
+- Assurez-vous de bien comprendre la configuration réseau de chaque machine et des réseaux entre elles. Utilisez des outils de diagnostic réseau tels que ping. Configurez les pare-feux pour autoriser le trafic réseau nécessaire, et simplifiez les configurations réseau si possible.
+
+#### Sécurité et authentification :
+- Mettre des pratiques de sécurité, telles que l'utilisation de clés SSH sécurisées et la configuration des autorisations d'accès appropriées. Sur Windows, utilisez les fonctionnalités d'authentification intégrées ou des solutions pour gérer l'accès à distance de manière sécurisée.
+
+#### Gestion des erreurs et débogage :
+- Adoptez une approche de débogage en vérifiant systématiquement chaque commande créée.
+
+#### Documentation et traçabilité :
+- Mettre en place des mises à jour régulières de la documentation afin de rester à jour et coordonné entre les membres du projet.
 
 ### 7. AMELIORATIONS POSSIBLES  
 
