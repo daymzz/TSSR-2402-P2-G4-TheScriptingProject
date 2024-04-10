@@ -156,36 +156,55 @@ Pour le choix des postes clients, nous avons :
 
 ### 5. DIFFICULTES TROUVEES  
 
-#### Configuration réseau : 
+**1. Configuration réseau :** 
 - Des problèmes liés à la configuration réseau peuvent gêner la communication à distance entre les machines, notamment par le pare-feux, la configurations réseau complexes.
 
-#### Sécurité et authentification :
+**2. Sécurité et authentification :**
 - Configurer correctement l'authentification à distance peut être un difficile, en particulier pour garantir que seules les personnes autorisées ont accès aux machines distantes. Cela peut impliquer la gestion des clés SSH et des commandes Windows.
 
-#### Gestion des erreurs et débogage :
+**3. Gestion des erreurs et débogage :**
 - Identifier et résoudre les erreurs lors de l'exécution de commandes à distance peut être complexe, en particulier lorsqu'il y a des problèmes de communication ou de configuration. Lister, réessayer, modifier : ceci peut prendre énormément de temps.
 
-#### Évolutivité et gestion du Script : 
+**4. Évolutivité et gestion du Script :** 
 - À mesure que script évolue et grandit, la gestion et la maintenance de l'infrastructure devient plus complexes. Il est essentiel de mettre en place des pratiques et des règles pour gérer efficacement son environnement.
 
-#### Documentation et traçabilité : 
+**5. Documentation et traçabilité :** 
 - Maintenir une documentation complète et à jour sur la configuration, les procédures et les problèmes rencontrés est essentiel pour assurer la traçabilité des actions effectuées à distance et faciliter la résolution des problèmes futurs.
 
 
 ### 6. SOLUTIONS TROUVEES  
 
-#### Configuration réseau :
+**1. Configuration réseau :**
 - Assurez-vous de bien comprendre la configuration réseau de chaque machine et des réseaux entre elles. Utilisez des outils de diagnostic réseau tels que ping. Configurez les pare-feux pour autoriser le trafic réseau nécessaire, et simplifiez les configurations réseau si possible.
 
-#### Sécurité et authentification :
+**2. Sécurité et authentification :**
 - Mettre des pratiques de sécurité, telles que l'utilisation de clés SSH sécurisées et la configuration des autorisations d'accès appropriées. Sur Windows, utilisez les fonctionnalités d'authentification intégrées ou des solutions pour gérer l'accès à distance de manière sécurisée.
 
-#### Gestion des erreurs et débogage :
+**3. Gestion des erreurs et débogage :**
 - Adoptez une approche de débogage en vérifiant systématiquement chaque commande créée.
 
-#### Documentation et traçabilité :
+**4. Documentation et traçabilité :**
 - Mettre en place des mises à jour régulières de la documentation afin de rester à jour et coordonné entre les membres du projet.
 
 ### 7. AMELIORATIONS POSSIBLES  
 
-____
+**1. Ergonomie des scripts :**
+- Diviser le script en modules de fonction distincts pour améliorer la lisibilité et faciliter la maintenance.
+- Utiliser des commentaires clairs et concis pour expliquer le fonctionnement de chaque partie du script.
+- Adopter des conventions de nommage cohérentes et intuitives pour les variables, les fonctions et les modules.
+
+**2. Système de couleur :**
+- Mettre en place un système de coloration pour améliorer la lisibilité et la compréhension du script.
+- Utiliser des couleurs distinctes pour différencier les messages d'erreur, les avertissements, les confirmations et les informations.
+
+**3. Gestion des erreurs :**
+- Renforcer la gestion des erreurs en identifiant et en traitant les erreurs de manière plus précise.
+- Afficher des messages d'erreur clairs et des suggestions de résolution pour guider l'utilisateur en cas de problème.
+- Intégrer des mécanismes de détection automatique des erreurs pour anticiper les problèmes potentiels avant qu'ils ne surviennent.
+
+**4. Documentation et traçabilité :**
+- Mettre en place des processus réguliers de révision et de mise à jour de la documentation pour garantir sa validité et sa pertinence au fil du temps.
+- Utiliser des outils de gestion de la documentation et de suivi des modifications pour faciliter la collaboration entre les membres de l'équipe.
+- Assurer la traçabilité des modifications apportées au script en documentant les mises à jour, les corrections de bogues et les nouvelles fonctionnalités ajoutées.
+
+**En implémentant ces améliorations, vous pourrez rendre votre projet plus convivial, plus robuste et plus facile à gérer pour l'ensemble de l'équipe.**
