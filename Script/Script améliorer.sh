@@ -6,6 +6,9 @@
 #######################################   action fonction   ################################################
 ############################################################################################################
 
+ip=""
+utilisateur=""
+
 function gestion_utilisateur() {
 
     #Création de compte utilisateur local avec mot de passe :
@@ -292,8 +295,11 @@ function  gestion_prise_main_distance () {
 
 function gestion_information() {
 
+    read -p "IP du serveur : " ip
+    read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
     # Date de dernière connexion
     function date_derniere_connexion() {
+        clear
         read -p "Entrez le nom d'utilisateur : " lastlog_user
         echo "Affiche la date de dernière connexion de $lastlog_user"
         ssh $utilisateur@$ip "sudo -S lastlog $lastlog_user"
@@ -301,6 +307,7 @@ function gestion_information() {
 
     # Date de dernière modification du mot de passe
     function date_derniere_modif_mot_de_passe() {
+        clear
         read -p "Entrez le nom d'utilisateur : " lastmodif_user
         echo "Affiche la date de dernière modification du mot de passe pour $lastmodif_user"
         ssh $utilisateur@$ip "sudo -S chage -l $lastmodif_user"
@@ -308,6 +315,7 @@ function gestion_information() {
 
     # Liste des sessions ouvertes par l'utilisateur
     function liste_sessions_utilisateur() {
+        clear
         read -p "Entrez le nom d'utilisateur : " user_session
         echo "Affiche la liste des sessions ouvertes par $user_session"
         ssh $utilisateur@$ip "w -u $user_session"
@@ -315,6 +323,7 @@ function gestion_information() {
 
     # Groupe d'appartenance d'un utilisateur
     function groupe_appartenance_utilisateur() {
+        clear
         read -p "Entrez le nom d'utilisateur : " grp_user
         echo "Affiche le groupe d'appartenance de $grp_user"
         ssh $utilisateur@$ip "groups $grp_user"
@@ -322,6 +331,7 @@ function gestion_information() {
 
     # Droits et permissions sur un dossier
     function droits_permissions_dossier() {
+        clear
         read -p "Entrez le chemin du dossier, ex: /home/user/repertoire/dossier : " road_directory
         echo "Affiche les droits et permissions sur le dossier $road_directory"
         ssh $utilisateur@$ip "ls -ld \"$road_directory\""
@@ -329,6 +339,7 @@ function gestion_information() {
 
     # Droits et permissions sur un fichier
     function droits_permissions_fichier() {
+        clear
         read -p "Entrez le chemin du fichier, ex: /home/user/directory/file.txt : " road_file
         echo "Affiche les droits et permissions sur le fichier $road_file"
         ssh $utilisateur@$ip "ls -l \"$road_file\""
@@ -336,51 +347,58 @@ function gestion_information() {
 
     # Version de l'OS, nombre de disques, partitions, etc.
     function version_os() {
+        clear
         echo "Affichage de la version de l'OS du client"
         ssh $utilisateur@$ip "lsb_release -a"
     }
 
     #Nombre de disques de l'ordinateur client :
     function nombre_disques() {
+        clear
         echo "Affiche le nombre de disque du client"
         ssh $utilisateur@$ip "lsblk | grep disk | wc -l"
     }
 
     #Partition par disque de l'ordinateur client :
     function partition_par_disque() {
+        clear
         echo "Affichage des informations sur les partitions par disque du client"
         ssh $utilisateur@$ip "lsblk | grep sd"
     }
     #Nom et espace disque d'un dossier :
 
     function espace_disque_dossier () {
+        clear
         ssh $utilisateur@$ip "df -h #/chemin/du/dossier"
         echo "Affiche le nom et l'espace disque du dossier"
-        exit 0
+        
     }
 
     #Liste des lecteurs montés :
 
     function lecteurs_montes () {
+        clear
         ssh $utilisateur@$ip "df -h"
         echo "Affiche le liste des lecteurs montés"
-        exit 0
+        
     }
 
     #Nombre d'interfaces et adresse ip :
 
     function interfaces_ip () {
+        clear
         ssh $utilisateur@$ip "sudo -S netstat -i | --interfaces && ip addr" #a verifier 
         echo "Affiche le nombre d'interfaces et leur adresse ip"
-        exit 0
+        
     }
 
     #Liste des ports ouverts :
 
     function ports_ouverts () {
+        clear
         ssh $utilisateur@$ip "sudo netstat -l | --listening && ip addr"
         echo "Affiche la liste des ports ouverts"
-        exit 0
+        
     }
 
     #Statut du pare-feu :
@@ -388,30 +406,32 @@ function gestion_information() {
 
 
     function statut_pare_feu () {
+        clear
         ssh $utilisateur@$ip "sudo -S ufw status"
         echo "Affiche le statut du pare-feu"
-        exit 0
+        
     }
 
     #Recherche des événements dans le fichier log_evt.log pour un utilisateur :
 
     function recherche_evenements_utilisateur () {
+        clear
         ssh $utilisateur@$ip "grep "nom_user" #/chemin/dufichier/log_evt.log"
         echo "Affiche es evenements du fichier log_evt.log pour un utilisateur"
-        exit 0
+        
     }
 
     #Recherche des événements dans le fichier log_evt.log pour un ordinateur :
 
     function recherche_evenements_ordinateur () {
+        clear
         ssh $utilisateur@$ip "grep "adresse_ip" #/chemin/dufichier/log_evt.log"
         echo "Affiche les événements du fichier log_evt.log pour un ordinateur"
-        exit 0
+        
     }
 
     # Menu de gestion des informations
     while true; do
-        clear
         echo "Menu de gestion des informations :"
         echo "1. Date de dernière connexion d'un utilisateur"
         echo "2. Date de dernière modification du mot de passe"
@@ -449,13 +469,15 @@ function gestion_information() {
             14) statut_pare_feu ;;
             15) recherche_evenements_utilisateur ;; 
             16) recherche_evenements_ordinateur ;;
-            17) echo "Retour au menu principal."; return ;;
+            17) echo "Retour au menu principal."; clear;return ;;
             *) echo "Option non valide. Veuillez choisir une option valide." ;;
         esac
     done
 }
 
-while true; do
+
+function menu_action () {
+    while true; do
 clear
 echo "==========================="
 echo "Menu principal de gestion :"
@@ -464,9 +486,8 @@ echo "1. Gestion des utilisateurs"
 echo "2. Gestion des groupes"
 echo "3. Gestion du système"
 echo "4. Gestion des répertoires"
-echo "5. Gestion des informations"
-echo "6. Gestion prise en main à distance"
-echo "7. Quitter"
+echo "5. Gestion prise en main à distance"
+echo "6. Quitter"
 read -p "Choisissez une option : " choix
 read -p "IP du serveur : " ip
 read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
@@ -475,9 +496,26 @@ case $choix in
     2) gestion_groupe ;;
     3) gestion_systeme ;;
     4) gestion_repertoire ;;
-    5) gestion_information ;;
-    6) gestion_prise_main_distance ;;
-    7) echo "Au revoir !!!!!"; exit ;;
+    5) gestion_prise_main_distance ;;
+    6) echo "Au revoir !!!!!"; exit ;;
+    *) echo "Option non valide !?!?!?" ;;
+esac
+done
+}
+
+while true; do
+clear
+echo "==========================="
+echo "      Menu principal       "
+echo "==========================="
+echo "1. Menu Action"
+echo "2. Menu des informations"
+echo "3. Quitter"
+read -p "Choisissez une option : " choix
+case $choix in
+    1) menu_action;;
+    2) gestion_information ;;
+    3) echo "Au revoir !!!!!"; clear; exit  ;;
     *) echo "Option non valide !?!?!?" ;;
 esac
 done
