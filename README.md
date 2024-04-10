@@ -92,9 +92,9 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
     |     *MEMBRE*     |                                     *TÂCHES*                                  |
     |       :---:      |                                      :---:                                    |
     |  CAULIER Charles |            Gestion des fichiers logs et test code bash , Powershell           |
-    | HORTHOLARY Yanis |           Documentation, test et finilasation du code bash , Powershell       |
-    |   KAMARA Maxime  |           Documentation, implémentation du ssh, test du code bash, Powershell |
-    |   LEGAY Damien   |           Documentation,  test et finilasation du code bash, Powershell       |  
+    | HORTHOLARY Yanis |           Documentation, tests et finalisation du code Bash, PowerShell       |
+    |   KAMARA Maxime  |          Documentation, implémentation du SSH, tests du code Bash, Powershell |
+    |   LEGAY Damien   |          Documentation,  tests et finalisation du code Bash, Powershell       |  
 
 ***SEMAINE 4***
 
