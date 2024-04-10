@@ -7,8 +7,6 @@
 ############################################################################################################
 
 function gestion_utilisateur() {
-    read -p "IP du serveur: " ip
-    read -p "Nom d'utilisateur pour la connexion SSH: " utilisateur
 
     #Création de compte utilisateur local avec mot de passe :
     function create_user() {
@@ -68,6 +66,7 @@ function gestion_utilisateur() {
 
 
     while true; do
+        clear
         echo "Menu de gestion d'utilisateurs :"
         echo "1. Créer un utilisateur"
         echo "2. Ajouter un mot de passe"
@@ -93,9 +92,6 @@ function gestion_utilisateur() {
 
 function gestion_groupe() {
     
-    read -p "IP du serveur: " ip
-    read -p "Nom d'utilisateur pour la connexion SSH: " utilisateur
-
     #Ajout à un groupe d'administrateur :
     #-nG affiche les noms de tous les groupes auxquels appartient l'utilisateur
     function add_admin() {
@@ -144,6 +140,7 @@ function gestion_groupe() {
 
     
     while true; do
+        clear
         echo "Menu de gestion de groupe :"
         echo "1. Ajouter un utilisateur au groupe d'administrateurs"
         echo "2. Ajouter un utilisateur à un groupe local"
@@ -163,9 +160,6 @@ function gestion_groupe() {
 
 
 function gestion_systeme() {
-    
-    read -p "IP du serveur : " ip
-    read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
 
     # Arrêt de l'ordinateur
     function stop_ordi() {
@@ -198,6 +192,7 @@ function gestion_systeme() {
 
     # Menu de gestion du système
     while true; do
+        clear
         echo "Menu de gestion du système :"
         echo "1. Arrêter l'ordinateur"
         echo "2. Redémarrer l'ordinateur"
@@ -218,10 +213,6 @@ function gestion_systeme() {
 }
 
 function gestion_repertoire() {
-    # Demande des informations de connexion SSH
-    read -p "IP du serveur: " ip
-    read -p "Nom d'utilisateur pour la connexion SSH: " utilisateur
-
     # Création de répertoire
     function create_directory() {
         read -p "Entrez le nom du dossier à créer: " create_dossier
@@ -246,6 +237,7 @@ function gestion_repertoire() {
 
     # Menu de gestion de répertoire
     while true; do
+        clear
         echo "Menu de gestion de répertoires :"
         echo "1. Créer un répertoire"
         echo "2. Modifier un répertoire"
@@ -264,9 +256,6 @@ function gestion_repertoire() {
 }
 
 function gestion_securite() {
-    # Collecte des informations pour la connexion SSH
-    read -p "IP du serveur : " ip
-    read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
 
     # Activation du pare-feu
     function activer_pare_feu() {
@@ -282,6 +271,7 @@ function gestion_securite() {
 
     # Menu de gestion de la sécurité
     while true; do
+        clear
         echo "Menu de gestion de la sécurité :"
         echo "1. Activer le pare-feu"
         echo "2. Désactiver le pare-feu"
@@ -301,9 +291,6 @@ function  gestion_prise_main_distance () {
 }
 
 function gestion_information() {
-    # Collecte des informations pour la connexion SSH
-    read -p "IP du serveur : " ip
-    read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
 
     # Date de dernière connexion
     function date_derniere_connexion() {
@@ -424,6 +411,7 @@ function gestion_information() {
 
     # Menu de gestion des informations
     while true; do
+        clear
         echo "Menu de gestion des informations :"
         echo "1. Date de dernière connexion d'un utilisateur"
         echo "2. Date de dernière modification du mot de passe"
@@ -468,16 +456,20 @@ function gestion_information() {
 }
 
 while true; do
+clear
+echo "==========================="
 echo "Menu principal de gestion :"
+echo "==========================="
 echo "1. Gestion des utilisateurs"
 echo "2. Gestion des groupes"
 echo "3. Gestion du système"
 echo "4. Gestion des répertoires"
 echo "5. Gestion des informations"
-echo "6. Gestion des informations"
+echo "6. Gestion prise en main à distance"
 echo "7. Quitter"
 read -p "Choisissez une option : " choix
-
+read -p "IP du serveur : " ip
+read -p "Nom d'utilisateur pour la connexion SSH : " utilisateur
 case $choix in
     1) gestion_utilisateur ;;
     2) gestion_groupe ;;
