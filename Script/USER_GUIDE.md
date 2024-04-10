@@ -14,9 +14,13 @@ Dernière mise à jour du Document : **10 Avril 2024**
 
 3. Découvrir les fonctionnalités du script
 
-4. 
+1. Linux
+2. Windows
+ 
 
-5. FAQ
+5. 
+
+6. FAQ
 
 
 ## **1. Prérequis**
@@ -66,16 +70,20 @@ La documentation de base fournie ici devrait vous permettre d'installer, de conf
 
 ## **3. Découvrir les fonctionnalités du script**
 
+### ** 1. Linux** 
+
 
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
 
+![2024-04-10 15_37_45-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/7a204afc-c9ef-455e-8e85-a919a07e8fc2)
 
 
 Comme visible à l'image ci dessus vous avez le choix entre 2 menu.
 
 
-
 Le premier menu "Action" vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
+
+
 
 
 
