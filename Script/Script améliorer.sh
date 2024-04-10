@@ -458,6 +458,10 @@ function gestion_information() {
 
     # Menu de gestion des informations
     while true; do
+        clear
+        echo "==========================="
+        echo "       Menu Information:"
+        echo "==========================="
         echo "Menu de gestion des informations :"
         echo "1. Date de dernière connexion d'un utilisateur"
         echo "2. Date de dernière modification du mot de passe"
@@ -518,7 +522,6 @@ function menu_action () {
         echo "3. Gestion du système"
         echo "4. Gestion des répertoires"
         echo "5. Gestion prise en main à distance"
-        echo "6. Connexion"
         echo "7. Retour menu principal"
         read -p "Choisissez une option : " choix
         case $choix in
@@ -527,7 +530,6 @@ function menu_action () {
             3) gestion_systeme ;;
             4) gestion_repertoire ;;
             5) gestion_prise_main_distance ;;
-            6) connexion;;
             7) echo "Au revoir !!!!!"; clear;return ;;
             *) echo "Option non valide !?!?!?" ;;
         esac
@@ -541,12 +543,14 @@ echo "      Menu principal       "
 echo "==========================="
 echo "1. Menu Action"
 echo "2. Menu des informations"
-echo "3. Quitter"
+echo "3. Connexion"
+echo "4. Quitter"
 read -p "Choisissez une option : " choix
 case $choix in
     1) menu_action;;
     2) gestion_information ;;
-    3) echo "Au revoir !!!!!"; clear; exit  ;;
+    3) connexion;;
+    4) echo "Au revoir !!!!!"; clear; exit  ;;
     *) echo "Option non valide !?!?!?" ;;
 esac
 done
