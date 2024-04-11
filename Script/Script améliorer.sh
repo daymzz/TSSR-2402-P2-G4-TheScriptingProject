@@ -412,7 +412,7 @@ function gestion_information() {
 
     function interfaces_ip () {
         clear
-        ssh $utilisateur@$ip "sudo -S netstat -i | --interfaces && ip addr" #a verifier 
+        ssh $utilisateur@$ip "sudo -S netstat -i && ip addr" 
         echo "Affiche le nombre d'interfaces et leur adresse ip"
         sleep 5
         return 
@@ -422,7 +422,7 @@ function gestion_information() {
 
     function ports_ouverts () {
         clear
-        ssh $utilisateur@$ip "sudo -S netstat -l | --listening && ip addr"
+        ssh $utilisateur@$ip "sudo -S netstat -l && ip addr"
         echo "Affiche la liste des ports ouverts"
         sleep 5
         return 
