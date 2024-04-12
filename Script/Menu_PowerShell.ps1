@@ -265,12 +265,14 @@ while ($true) {
             Write-Host "==============="
             Write-Host "1 - Information Utilisateur"
             Write-Host "2 - Information Système"
-            Write-Host "3 - Quitter"
+            Write-Host "3 - Connexion"
+            Write-Host "4 - Quitter"
             $choixMenuInformation = Read-Host "Entrez votre choix"
             switch ($choixMenuInformation) {
                 1 { Information-Utilisateur }
                 2 { Information-Systeme }
-                3 { return }
+                3 { Connexion }
+                4 { return }
             }
         }
 
