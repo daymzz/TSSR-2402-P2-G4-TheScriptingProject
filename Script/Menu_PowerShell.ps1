@@ -1,6 +1,7 @@
-$iPDistan = ""
-$credential = ""
+
 function ActionCompte {
+    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
+    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
     while ($true) {
     # Affiche un menu des actions à réaliser
     Clear-Host
@@ -57,11 +58,13 @@ function ActionCompte {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
         }
     }
-}
+    }
 }
 
 function ActionGroupe {
- while ($true) {
+    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
+    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
+    while ($true) {
     # Affiche un menu
     Clear-Host
     Write-Output "Sélectionnez l'action à réaliser :"
@@ -111,12 +114,14 @@ function ActionGroupe {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
         }
     }
-}
+    }
    
 }
 
 function ActionSysteme {
-  while ($true) {
+    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
+    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
+    while ($true) {
     # Affiche un menu des actions à réaliser
     Clear-Host
     Write-Output "Sélectionnez l'action à réaliser :"
@@ -145,7 +150,6 @@ function ActionSysteme {
             # Déconnexion de la session utilisateur de l'ordinateur distant
             Invoke-Command -ComputerName $iPDistant -ScriptBlock { logoff console } -Credential $Credential
             }
-     
         "5" {
             Write-Output "Fin du script."
             return
@@ -155,43 +159,43 @@ function ActionSysteme {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
         }
     }
-}
+    }
 
 }
 
 function ActionRepertoire {
-   
 }
 
 function ActionSecurite {
-   # Affiche un menu des actions à réaliser pour le pare-feu
-Clear-Host
-Write-Output "Sélectionnez l'action à réaliser sur le pare-feu :"
-Write-Output "1 - Activer le pare-feu"
-Write-Output "2 - Désactiver le pare-feu"
-Write-Output "3 - Quitter le script"
-$action = Read-Host "Entrez le numéro de votre choix"
+    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
+    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
+    Clear-Host
+    Write-Output "Sélectionnez l'action à réaliser sur le pare-feu :"
+    Write-Output "1 - Activer le pare-feu"
+    Write-Output "2 - Désactiver le pare-feu"
+    Write-Output "3 - Quitter le script"
+    $action = Read-Host "Entrez le numéro de votre choix"
 
-switch ($action) {
-    "1" {
-        # Activation du pare-feu de l'ordinateur distant
-        Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True } -Credential $Credential
-        Write-Output "Le pare-feu a été activé sur l'ordinateur distant."
-    }
-    "2" {
-        # Désactivation du pare-feu de l'ordinateur distant
-        Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False } -Credential $Credential
-        Write-Output "Le pare-feu a été désactivé sur l'ordinateur distant."
-    }
-    "3" {
-        Write-Output "Retour menu"
-        retrun
-        sleep 2
-    }
-    default {
-        Write-Output "Action non reconnue. Veuillez essayer à nouveau."
-    }
-} 
+    switch ($action) {
+        "1" {
+            # Activation du pare-feu de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True } -Credential $Credential
+            Write-Output "Le pare-feu a été activé sur l'ordinateur distant."
+        }
+        "2" {
+            # Désactivation du pare-feu de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False } -Credential $Credential
+            Write-Output "Le pare-feu a été désactivé sur l'ordinateur distant."
+        }
+        "3" {
+            Write-Output "Retour menu"
+            retrun
+            sleep 2
+        }
+        default {
+            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+        }
+    } 
 }
 
 function ActionLogiciel {
@@ -210,10 +214,6 @@ function InformationSysteme {
     
 }
 
-function Connexion {
-    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
-    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
-}
 
 # Boucle principale du menu
 while ($true) {
@@ -225,11 +225,9 @@ while ($true) {
     Write-Host "1 - Menu Action"
     Write-Host "2 - Menu Information"
     Write-Host "3 - Quitter"
+
     $choixMenuPrincipal = Read-Host "Entrez votre choix"
     
-    param(
-        [int]$choixMenuPrincipal
-    )
     switch ($choixMenuPrincipal) {
 
         1 {
@@ -265,18 +263,17 @@ while ($true) {
             Write-Host "==============="
             Write-Host "1 - Information Utilisateur"
             Write-Host "2 - Information Système"
-            Write-Host "3 - Connexion"
-            Write-Host "4 - Quitter"
+            Write-Host "3 - Quitter"
             $choixMenuInformation = Read-Host "Entrez votre choix"
             switch ($choixMenuInformation) {
                 1 { Information-Utilisateur }
                 2 { Information-Systeme }
-                3 { Connexion }
-                4 { return }
+                3 { return }
             }
         }
 
-        '3' { exit}
+
+        3 {exit}
 
     }
 
