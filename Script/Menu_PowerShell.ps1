@@ -1,14 +1,162 @@
-# Définitions des fonctions vides
+$iPDistan = ""
+$credential = ""
 function ActionCompte {
-    
+    while ($true) {
+    # Affiche un menu des actions à réaliser
+    Clear-Host
+    Write-Output "Sélectionnez l'action à réaliser :"
+    Write-Output "1 - Créer un compte utilisateur local"
+    Write-Output "2 - Changer le mot de passe d'un utilisateur"
+    Write-Output "3 - Supprimer un compte utilisateur local"
+    Write-Output "4 - Désactiver un compte utilisateur local"
+    Write-Output "5 - Retour menu"
+    $action = Read-Host "Entrez le numéro de votre choix"
+
+    # Détermine l'action à effectuer en fonction du choix de l'utilisateur
+    switch ($action) {
+        "1" {
+            $Nom = Read-Host "Entrez le nom du nouvel utilisateur"
+            $motdepasse = Read-Host "Entrez le mot de passe du nouvel utilisateur" -AsSecureString
+            $petitScript = {
+                param($Nom, $motdepasse)
+                New-LocalUser -Name $Nom -Password $motdepasse
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $Nom, $motdepasse -Credential $credential
+        }
+        "2" {
+            $Nom = Read-Host "Entrez le nom de l'utilisateur"
+            $motdepasse = Read-Host "Entrez le nouveau mot de passe" -AsSecureString
+            $petitScript = {
+                param($Nom, $motdepasse)
+                Set-LocalUser -Name $Nom -Password $motdepasse
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $Nom, $motdepasse -Credential $credential
+        }
+        "3" {
+            $Nom = Read-Host "Entrez le nom de l'utilisateur à supprimer"
+            $petitScript = {
+                param($Nom)
+                Remove-LocalUser -Name $Nom
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $Nom -Credential $credential
+        }
+        "4" {
+            $Nom = Read-Host "Entrez le nom de l'utilisateur à désactiver"
+            $petitScript = {
+                param($Nom)
+                Disable-LocalUser -Name $Nom
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $Nom -Credential $credential
+        }
+        "5" {
+            Write-Output "Retour menu"
+            sleep 2
+            Return
+        }
+        default {
+            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+        }
+    }
+}
 }
 
 function ActionGroupe {
-    
+ while ($true) {
+    # Affiche un menu
+    Clear-Host
+    Write-Output "Sélectionnez l'action à réaliser :"
+    Write-Output "1 - Ajouter un utilisateur à un groupe d'administration"
+    Write-Output "2 - Ajouter un utilisateur à un groupe local"
+    Write-Output "3 - Retirer un utilisateur d'un groupe local"
+    Write-Output "4 - Quitter"
+    $action = Read-Host "Entrez le numéro de votre choix"
+
+    switch ($action) {
+        "1" {
+            $nomUtilisateur = Read-Host "Entrez le nom de l'utilisateur"
+            $nomGroupe = "Administrateurs"
+            $petitScript = {
+            #Fixe les paramatre utilisateur et groupe pour s'arrurer que c'est bien ces variable qui vont dans -Group -Member
+                param($nomUtilisateur, $nomGroupe)
+                Add-LocalGroupMember -Group $nomGroupe -Member $nomUtilisateur
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $nomUtilisateur, $nomGroupe -Credential $informationsDIdentification
+        }
+        "2" {
+            $nomUtilisateur = Read-Host "Entrez le nom de l'utilisateur"
+            $nomGroupe = Read-Host "Entrez le nom du groupe local"
+            $petitScript = {
+            #Fixe les paramatre utilisateur et groupe pour s'arrurer que c'est bien ces variable qui vont dans -Group -Member
+                param($nomUtilisateur, $nomGroupe)
+                Add-LocalGroupMember -Group $nomGroupe -Member $nomUtilisateur
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $nomUtilisateur, $nomGroupe -Credential $informationsDIdentification
+        }
+        "3" {
+            $nomUtilisateur = Read-Host "Entrez le nom de l'utilisateur"
+            $nomGroupe = Read-Host "Entrez le nom du groupe local"
+            $petitScript = {
+            #Fixe les paramatre utilisateur et groupe pour s'arrurer que c'est bien ces variable qui vont dans -Group -Member
+                param($nomUtilisateur, $nomGroupe)
+                Remove-LocalGroupMember -Group $nomGroupe -Member $nomUtilisateur
+            }
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock $petitScript -ArgumentList $nomUtilisateur, $nomGroupe -Credential $informationsDIdentification
+        }
+        "4" {
+            Write-Output "Retour"
+            return
+            sleep 2
+        }
+        default {
+            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+        }
+    }
+}
+   
 }
 
 function ActionSysteme {
-  
+  while ($true) {
+    # Affiche un menu des actions à réaliser
+    Clear-Host
+    Write-Output "Sélectionnez l'action à réaliser :"
+    Write-Output "1 - Arrêter l'ordinateur distant"
+    Write-Output "2 - Redémarrer l'ordinateur distant"
+    Write-Output "3 - Effectuer une mise à jour du système sur l'ordinateur distant"
+    Write-Output "4 - Se déconnecter de la session utilisateur sur l'ordinateur distant"
+    Write-Output "5 - Quitter le script"
+    $action = Read-Host "Entrez le numéro de votre choix"
+
+    switch ($action) {
+        "1" {
+            # Arrêt de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { shutdown /s } -Credential $Credential
+        }
+        "2" {
+            # Redémarrage de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { shutdown /r } -Credential $Credential
+        }
+        "3" {
+            # Mise à jour du système de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock {  Import-Module PSWindowsUpdate
+    Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot } -Credential $Credential
+            }
+        "4" {
+            # Déconnexion de la session utilisateur de l'ordinateur distant
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { logoff console } -Credential $Credential
+            }
+     
+        "5" {
+            Write-Output "Fin du script."
+            return
+            sleep 2
+        }
+        default {
+            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+        }
+    }
+}
+
 }
 
 function ActionRepertoire {
@@ -16,7 +164,34 @@ function ActionRepertoire {
 }
 
 function ActionSecurite {
-    
+   # Affiche un menu des actions à réaliser pour le pare-feu
+Clear-Host
+Write-Output "Sélectionnez l'action à réaliser sur le pare-feu :"
+Write-Output "1 - Activer le pare-feu"
+Write-Output "2 - Désactiver le pare-feu"
+Write-Output "3 - Quitter le script"
+$action = Read-Host "Entrez le numéro de votre choix"
+
+switch ($action) {
+    "1" {
+        # Activation du pare-feu de l'ordinateur distant
+        Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True } -Credential $Credential
+        Write-Output "Le pare-feu a été activé sur l'ordinateur distant."
+    }
+    "2" {
+        # Désactivation du pare-feu de l'ordinateur distant
+        Invoke-Command -ComputerName $iPDistant -ScriptBlock { Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False } -Credential $Credential
+        Write-Output "Le pare-feu a été désactivé sur l'ordinateur distant."
+    }
+    "3" {
+        Write-Output "Retour menu"
+        retrun
+        sleep 2
+    }
+    default {
+        Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+    }
+} 
 }
 
 function ActionLogiciel {
@@ -33,6 +208,11 @@ function InformationUtilisateur {
 
 function InformationSysteme {
     
+}
+
+function Connexion {
+    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
+    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
 }
 
 # Boucle principale du menu
@@ -74,7 +254,7 @@ while ($true) {
                 '5' { ActionSecurite }
                 '6' { ActionLogiciel }
                 '7' { ActionBureauADistance }
-                '8' { break }
+                '8' { return }
             }
         }
 
@@ -90,7 +270,7 @@ while ($true) {
             switch ($choixMenuInformation) {
                 1 { Information-Utilisateur }
                 2 { Information-Systeme }
-                3 { break }
+                3 { return }
             }
         }
 
