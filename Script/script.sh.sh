@@ -286,7 +286,7 @@ function gestion_repertoire() {
             1) create_directory ;;
             2) modify_directory ;;
             3) del_directory ;;
-            4) echo "Au revoir !" ;echo "$(date +%F-%X) - $USER - Retour au menu précedent" >> /var/log/log_evt.log ;return ;;
+            0) echo "Au revoir !" ;echo "$(date +%F-%X) - $USER - Retour au menu précedent" >> /var/log/log_evt.log ;return ;;
             *) echo "Option non valide. Veuillez choisir une option valide." ;;
         esac
     done
@@ -578,7 +578,7 @@ function menu_action () {
         echo "3. Gestion du système"
         echo "4. Gestion des répertoires"
         echo "5. Gestion prise en main à distance"
-        echo "6. Gestion sécurité
+        echo "6. Gestion sécurité"
         echo "0. Retour menu principal"
         read -p "Choisissez une option : " choix
         case $choix in
