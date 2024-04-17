@@ -40,6 +40,7 @@ Avant d'utiliser ce script, assurez-vous que les éléments suivants sont en pla
 
 1. Récuperez le script depuis le Github.
 2. Assurez-vous d'avoir les autorisations appropriées pour exécuter le script.
+3. Sur la partie Linux la documentation est en graphique pour une meilleure visibilité, il est aussi fonctionnel en CLI évidemment.
 
 ### Utilisation
 
@@ -136,10 +137,13 @@ Le menu **``Gestion des répertoires``**
 
 Le menu **``Gestion prise en main à distance``**
 
+
+
+
 Le menu **``Gestion sécurité``**
 
 
-
+![2024-04-17 14_38_31-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/e574d48a-ab42-4670-9d97-8a0aa0528954)
 
 
 
