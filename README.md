@@ -102,7 +102,7 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
     |      SM       |        PO        |
     |     :---:     |       :---:      |
-    | CAULIER Charles |                  |  
+    | CAULIER Charles |  LEGAY Damien  |  
 
 - TÂCHES
 
