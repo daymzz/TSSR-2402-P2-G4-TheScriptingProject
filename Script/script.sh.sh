@@ -587,7 +587,7 @@ function menu_action () {
             3) gestion_systeme ;echo "$(date +%F-%X) - $USER - Gestion Systeme" >> /var/log/log_evt.log ;;
             4) gestion_repertoire ;echo "$(date +%F-%X) - $USER - Gestion Répertoire" >> /var/log/log_evt.log ;;
             5) gestion_prise_main_distance ;echo "$(date +%F-%X) - $USER - Gestion Prise en main à distance" >> /var/log/log_evt.log ;;
-            6) gestion_sécurite ; echo "$(date +%F-%X) - $USER - Gestion Sécurite" >> /var/log/log_evt.log ;;
+            6) gestion_securite ; echo "$(date +%F-%X) - $USER - Gestion Sécurite" >> /var/log/log_evt.log ;;
             0) echo "Au revoir !!!!!" ;clear ;echo "$(date +%F-%X) - $USER -Retour au menu principal" >> /var/log/log_evt.log ;return ;;
             *) echo "Option non valide !?!?!?" ;;
         esac
