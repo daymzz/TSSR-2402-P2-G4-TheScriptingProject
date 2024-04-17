@@ -199,7 +199,71 @@ function ActionSecurite {
 }
 
 function ActionLogiciel {
-    
+        # Demande l'adresse IP distant
+    $iPDistant = Read-Host "Ip ordinateur distant"
+
+    # Demande les informations Credential (c'est le nom du compte d'en face"
+    $Credential = Get-Credential
+
+    function Installer {
+        function installSoftware {
+            param (
+                [string]$nameInstallApp
+            )
+            try{
+                start-Process -FilePath "$nameInstallApp"
+            }catch{
+                Write-Host "Erreur! Veuillez verifier que le fichier et le chemin existe ou qu'il soient ecrit de la bonne maniere. "
+            }
+        }
+        
+        $nameInstallApp = Read-Host "Entre le chemin complete suivi du noms de fichier installation"
+        installSoftware $nameInstallApp
+    }
+
+    function Désinstaller {
+        function uninstallSoftware {
+            param (
+                [string]$nameUninstallApp
+            )
+            try{
+                start-Process -FilePath "$nameUninstallApp"
+            }catch{
+                Write-Host "Erreur! Veuillez verifier que le fichier et le chemin existe ou qu'il soient ecrit de la bonne maniere. "
+            }
+        }
+        
+        $nameUninstallApp = Read-Host "Entre le chemin complete suivi du noms de fichier desinstallation"
+        uninstallSoftware $nameUninstallApp
+        
+    }
+    while ($true) {
+        # Affiche un menu 
+        Write-Output ""
+        Write-Output "1 - Installer "
+        Write-Output "2 - Désinstaller  "
+        Write-Output "3 - Retour menu"
+        $action = Read-Host "Entrez le numéro de votre choix"
+
+        switch ($action) {
+            "1" {
+                # Arrêt  distant
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Installer} -Credential $Credential
+            }
+            "2" {
+                # Redémarrage distant
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Désinstaller } -Credential $Credential
+            }
+            "3" {
+                Write-Output "Fin du script."
+                exit
+            }
+            default {
+                Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+            }
+        }
+}
+
 }
 
 function ActionBureauADistance {
@@ -211,133 +275,133 @@ function InformationUtilisateur {
 }
 
 function InformationSysteme {
-    #Demande l'adresse IP distant
-$iPDistant = Read-Host "Ip ordinateur distant"
+        #Demande l'adresse IP distant
+    $iPDistant = Read-Host "Ip ordinateur distant"
 
-# Demande les informations Credential (c'est le nom du compte d'en face"
-$Credential = Get-Credential
-function infoDossier { 
-    param (
-        [string]$cheminDossier
-    )
+    # Demande les informations Credential (c'est le nom du compte d'en face"
+    $Credential = Get-Credential
+    function infoDossier { 
+        param (
+            [string]$cheminDossier
+        )
 
-    try {
-        $infDossier = Get-Item $cheminDossier
-        $infDossierTaille = (Get-ChildItem -Path $infDossier.FullName -Recurse | Measure-Object -Property Length -Sum).Sum /1Gb
-        Write-Host "Dossier : $($infDossier.Name)"
-        Write-Host "Taille du dossier : $infDossierTaille Gbs"
+        try {
+            $infDossier = Get-Item $cheminDossier
+            $infDossierTaille = (Get-ChildItem -Path $infDossier.FullName -Recurse | Measure-Object -Property Length -Sum).Sum /1Gb
+            Write-Host "Dossier : $($infDossier.Name)"
+            Write-Host "Taille du dossier : $infDossierTaille Gbs"
 
+        }
+        catch {
+            Write-Host "Erreur"
+        }
+        $cheminDossier = Read-Host "Entrez le chemin du dossier :"
+        infoDossier  $cheminDossier
     }
-    catch {
-        Write-Host "Erreur"
-    }
-    $cheminDossier = Read-Host "Entrez le chemin du dossier :"
-    infoDossier  $cheminDossier
-}
 
 
 
-while ($true) {
-    # Affiche un menu 
-    Write-Output ""
-    Write-Output "1 - Liste des sessions ouvertes par l'utilisateur"
-    Write-Output "2 - Groupe d’appartenance d’un utilisateur "
-    Write-Output "3 - Date de derniere connexion d'un utilisateur"
-    Write-Output "4 - Historique des commandes exécutées par l'utilisateur "
-    Write-Output "5 - Droits/permissions de l’utilisateur sur un dossier "
-    Write-Output "6 - Droits/permissions de l’utilisateur sur un fichier  "
-    Write-Output "7 - Version de l'OS "
-    Write-Output "8 - Nombre de disques"
-    Write-Output "9 - Partition (nombre, nom, FS, taille) par disque "
-    Write-Output "10 - Espace disque restant par partition/volume "
-    Write-Output "11 - Nom et espace disque d'un dossier"
-    Write-Output "12 - Liste des lecteurs montés (disque, CD, etc.)"
-    Write-Output "13 - Nombre d'interfaces"
-    Write-Output "14 - Adresse IP de chaque interface "
-    Write-Output "15 - Adresse Mac "
-    Write-Output "16 - Liste des ports ouverts"
-    Write-Output "17 - Statut du pare-feu  "
-    Write-Output "0  - Retour menu "
-    $action = Read-Host "Entrez le numéro de votre choix"
+    while ($true) {
+        # Affiche un menu 
+        Write-Output ""
+        Write-Output "1 - Liste des sessions ouvertes par l'utilisateur"
+        Write-Output "2 - Groupe d’appartenance d’un utilisateur "
+        Write-Output "3 - Date de derniere connexion d'un utilisateur"
+        Write-Output "4 - Historique des commandes exécutées par l'utilisateur "
+        Write-Output "5 - Droits/permissions de l’utilisateur sur un dossier "
+        Write-Output "6 - Droits/permissions de l’utilisateur sur un fichier  "
+        Write-Output "7 - Version de l'OS "
+        Write-Output "8 - Nombre de disques"
+        Write-Output "9 - Partition (nombre, nom, FS, taille) par disque "
+        Write-Output "10 - Espace disque restant par partition/volume "
+        Write-Output "11 - Nom et espace disque d'un dossier"
+        Write-Output "12 - Liste des lecteurs montés (disque, CD, etc.)"
+        Write-Output "13 - Nombre d'interfaces"
+        Write-Output "14 - Adresse IP de chaque interface "
+        Write-Output "15 - Adresse Mac "
+        Write-Output "16 - Liste des ports ouverts"
+        Write-Output "17 - Statut du pare-feu  "
+        Write-Output "0  - Retour menu "
+        $action = Read-Host "Entrez le numéro de votre choix"
 
-    switch ($action) {
-        "1" {
-           #   Liste des sessions ouvertes par l'utilisateur :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSSession } -Credential $Credential
+        switch ($action) {
+            "1" {
+            #   Liste des sessions ouvertes par l'utilisateur :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSSession } -Credential $Credential
+            }
+            "2" {
+                # Groupe d’appartenance d’un utilisateur :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name wilder | Select-Object ObjectClass } -Credential $Credential
+            }
+            "3" {
+            # date de derniere connexion d'un utilisateur
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock {Get-localUser -name wilder | Select-Object LastLogon } -Credential $Credential
+            }
+            "4" {
+                #    Historique des commandes exécutées par l'utilisateur :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-History} -Credential $Credential
+            }
+            "5" {
+                #   Droits/permissions de l’utilisateur sur un dossier : a revoir
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Dossier" | Format-List } -Credential $Credential
+            }
+            "6" {
+                #   Droits/permissions de l’utilisateur sur un fichier :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Fichier" | Format-List
+            } -Credential $Credential
+            }
+            "7" {
+                #   Version de l'OS : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Computer OsName, OsVersion} -Credential $Credential
+            }
+            "8" {
+                #   Nombre de disques : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object Count} -Credential $Credential
+            }
+            "9" {
+                #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieux
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Partition | Select-Object DiskNumber, Name, FileSystem, Size } -Credential $Credential
+            }
+            "10" {
+                #   Espace disque restant par partition/volume : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, SizeRemaining } -Credential $Credential
+            }
+            "11" {
+            #   Nom et espace disque d'un dossier (nom de dossier demandé) :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { infoDossier } -Credential $Credential
+            }
+            "12" {
+                #   Liste des lecteurs montés (disque, CD, etc.) :ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSDrive | Where-Object {$_.Provider -match "FileSystem"}} -Credential $Credential
+            }
+            "13" {
+            #  Nombre d'interfaces : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Measure-Object | Select-Object Count} -Credential $Credential
+            }
+            "14" {
+            #   Adresse IP de chaque interface : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress} -Credential $Credential
+            }
+            "15" {
+            #   Adresse Mac : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Select-Object Name, MacAddress} -Credential $Credential
+            }
+            "16" {
+                #   Liste des ports ouverts : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}} -Credential $Credential
+            }
+            "17" {
+            #    Statut du pare-feu : ok
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetFirewallProfile | Select-Object Name, Enabled} -Credential $Credential
+            }
+            "0" {
+                Write-Output "Fin du script."
+                exit
+            }
+            default {
+                Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+            }
         }
-        "2" {
-            # Groupe d’appartenance d’un utilisateur :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name wilder | Select-Object ObjectClass } -Credential $Credential
-        }
-        "3" {
-           # date de derniere connexion d'un utilisateur
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock {Get-localUser -name wilder | Select-Object LastLogon } -Credential $Credential
-        }
-        "4" {
-            #    Historique des commandes exécutées par l'utilisateur :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-History} -Credential $Credential
-        }
-        "5" {
-            #   Droits/permissions de l’utilisateur sur un dossier : a revoir
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Dossier" | Format-List } -Credential $Credential
-        }
-        "6" {
-            #   Droits/permissions de l’utilisateur sur un fichier :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Fichier" | Format-List
-        } -Credential $Credential
-        }
-        "7" {
-            #   Version de l'OS : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Computer OsName, OsVersion} -Credential $Credential
-        }
-        "8" {
-             #   Nombre de disques : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object Count} -Credential $Credential
-        }
-        "9" {
-            #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieux
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Partition | Select-Object DiskNumber, Name, FileSystem, Size } -Credential $Credential
-        }
-        "10" {
-            #   Espace disque restant par partition/volume : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, SizeRemaining } -Credential $Credential
-        }
-        "11" {
-           #   Nom et espace disque d'un dossier (nom de dossier demandé) :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { infoDossier } -Credential $Credential
-        }
-        "12" {
-            #   Liste des lecteurs montés (disque, CD, etc.) :ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSDrive | Where-Object {$_.Provider -match "FileSystem"}} -Credential $Credential
-        }
-        "13" {
-           #  Nombre d'interfaces : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Measure-Object | Select-Object Count} -Credential $Credential
-        }
-        "14" {
-           #   Adresse IP de chaque interface : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress} -Credential $Credential
-        }
-        "15" {
-           #   Adresse Mac : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Select-Object Name, MacAddress} -Credential $Credential
-        }
-        "16" {
-            #   Liste des ports ouverts : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}} -Credential $Credential
-        }
-        "17" {
-           #    Statut du pare-feu : ok
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetFirewallProfile | Select-Object Name, Enabled} -Credential $Credential
-        }
-        "0" {
-            Write-Output "Fin du script."
-            exit
-        }
-        default {
-            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
-        }
-    }
 }
 }
 
