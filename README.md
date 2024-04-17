@@ -102,16 +102,16 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
     |      SM       |        PO        |
     |     :---:     |       :---:      |
-    |               |                  |  
+    | CAULIER Charles |                  |  
 
 - TÂCHES
 
     |     *MEMBRE*     |            *TÂCHES*            |
     |       :---:      |              :---:             |
-    |  CAULIER Charles |                                |
-    | HORTHOLARY Yanis |                                |
-    |   KAMARA Maxime  |                                |
-    |   LEGAY Damien   |                                |  
+    |  CAULIER Charles |      Gestion des fichiers logS, test code Powershell et documentation       |
+    | HORTHOLARY Yanis |          Documentation, tests et finalisation du code PowerShell            |
+    |   KAMARA Maxime  |   Documentation, finalisation du code PowerShell, tests du code Powershell  |
+    |   LEGAY Damien   |   Documentation, finalisation du code PowerShell, tests du code Powershell  |  
 
 **SM** = *Scrum Master*
 **PO** = *Product Owner*
