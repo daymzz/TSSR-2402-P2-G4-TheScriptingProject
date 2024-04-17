@@ -138,12 +138,11 @@ Le menu **``Gestion des répertoires``**
 Le menu **``Gestion prise en main à distance``**
 
 
+![2024-04-17 14_38_31-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/e574d48a-ab42-4670-9d97-8a0aa0528954)
+
 
 
 Le menu **``Gestion sécurité``**
-
-
-![2024-04-17 14_38_31-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/e574d48a-ab42-4670-9d97-8a0aa0528954)
 
 
 
