@@ -4,7 +4,7 @@
 
 Ce document est réservé à usage interne, il ne peut en aucun cas être divulgué à des tiers.
 
-Dernière mise à jour du Document : **10 Avril 2024**
+Dernière mise à jour du Document : **17 Avril 2024**
 
 ## **Sommaire**
 
@@ -70,7 +70,7 @@ La documentation de base fournie ici devrait vous permettre d'installer, de conf
 
 ## **3. Découvrir les fonctionnalités du script**
 
-### ** 1. Linux** 
+### **1. Linux** 
 
 
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
@@ -78,18 +78,88 @@ Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci
 ![2024-04-10 15_37_45-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/7a204afc-c9ef-455e-8e85-a919a07e8fc2)
 
 
-Comme visible à l'image ci dessus vous avez le choix entre 2 menu.
+Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
 
 
-Le premier menu "Action" vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
-
-
-
+Le premier menu **``Action``** vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
 
 
 
-Le deuxième menu "Informations" vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
 
 
 
-Explorons pour commencer le menu "Action"
+Le deuxième menu **``Informations``** vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
+
+
+On commence par se connecter à la machine cible. Pour cela, il faut lui fournir son adresse IP et le nom d'utilisateur en selectionnant le menu **``Connexion``**
+
+
+![2024-04-17 10_17_33-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/8dc627b3-8cb1-4fb2-8126-1c99597459fb)
+
+
+
+
+
+
+Explorons pour commencer le menu **``Action``**
+
+Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
+
+![2024-04-17 10_17_55-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/9e322eb2-148a-4175-8723-eab194039b36)
+
+
+
+Le menu **``Gestion des utilisateurs``** 
+
+
+![2024-04-17 10_18_16-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/d4cc7ffa-5ce7-4409-85f1-1c515fed2fc2)
+
+
+
+Le menu **``Gestion des groupes``**
+
+
+![2024-04-17 10_18_34-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/d4eaa12f-57ef-4f95-bd31-58d03784252f)
+
+
+Le menu **``Gestion du système``**
+
+
+![2024-04-17 10_18_52-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/0aa539d3-1b1a-4392-ae0c-0ea007193100)
+
+
+Le menu **``Gestion des répertoires``**
+
+
+![2024-04-17 10_19_09-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/6f769484-7e14-4aa5-ba95-6eac2d9ec925)
+
+
+Le menu **``Gestion prise en main à distance``**
+
+Le menu **``Gestion sécurité``**
+
+
+
+
+
+
+
+Voila toutes les actions qui sont réalisable avec le script.
+
+
+
+
+Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné son nom d'utilisateur.
+
+![2024-04-17 11_27_46-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/a5f2ea7e-3d25-4d6e-9c5d-d689d0b0ec97)
+
+
+
+
+
+
+
+
+
+
+
