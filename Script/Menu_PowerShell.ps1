@@ -412,7 +412,7 @@ function InformationSysteme {
         switch ($action) {
             "1" {
             #   Liste des sessions ouvertes par l'utilisateur :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSSession } -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name wilder | Select-Object Enabled  } -Credential $Credential
             }
             "2" {
                 # Groupe d’appartenance d’un utilisateur :
