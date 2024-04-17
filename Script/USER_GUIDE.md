@@ -164,6 +164,92 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 
 
 
+### **2. Windows** 
+
+
+Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
+
+
+
+
+Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
+
+
+Le premier menu **``Action``** vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
+
+
+
+
+
+
+Le deuxième menu **``Informations``** vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
+
+
+On commence par se connecter à la machine cible. Pour cela, il faut lui fournir son adresse IP et le nom d'utilisateur en selectionnant le menu **``Connexion``**
+
+
+
+
+
+
+
+
+
+Explorons pour commencer le menu **``Action``**
+
+Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
+
+
+
+
+
+Le menu **``Gestion des utilisateurs``** 
+
+
+
+
+
+
+Le menu **``Gestion des groupes``**
+
+
+
+
+
+Le menu **``Gestion du système``**
+
+
+
+
+
+Le menu **``Gestion des répertoires``**
+
+
+
+
+
+Le menu **``Gestion prise en main à distance``**
+
+
+
+
+
+
+Le menu **``Gestion sécurité``**
+
+
+
+
+Voila toutes les actions qui sont réalisable avec le script.
+
+
+
+
+Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné son nom d'utilisateur.
+
+
+
+
 
 
 
