@@ -164,6 +164,38 @@ function ActionSysteme {
 }
 
 function ActionRepertoire {
+while ($true) {
+    # Affiche un menu 
+    Write-Output ""
+    Write-Output "1 - création répertoire"
+    Write-Output "2 - Duppression de répertoire  "
+    Write-Output "3 - modifier un repertoire"
+    Write-Output "4 - retrour "
+    $action = Read-Host "Entrez le numéro de votre choix"
+    $cheminApp = Read-Host "Veuillez saisir un chemin :"
+    switch ($action) {
+        "1" {
+            # création répertoire
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { New-Item -Path $chemin -ItemType Directory} -Credential $Credential
+        }
+        "2" {
+            # suppression de répertoire :
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Remove-Item -Path $chemin -Recurse -Force} -Credential $Credential
+        }
+        "3" {
+            # modifier un repertoire :
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Rename-Item -Path C:\chemin\du\repertoir renomer } -Credential $Credential
+        }
+        "4" {
+            Write-Output "Fin du script."
+            exit
+        }
+        default {
+            Write-Output "Action non reconnue. Veuillez essayer à nouveau."
+        }
+    }
+}
+
 }
 
 function ActionSecurite {
