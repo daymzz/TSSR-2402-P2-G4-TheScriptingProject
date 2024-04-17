@@ -145,6 +145,7 @@ Le menu **``Gestion prise en main à distance``**
 Le menu **``Gestion sécurité``**
 
 
+![2024-04-17 14_58_12-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/648491ab-6a14-4644-b129-e9c708d9a125)
 
 
 Voila toutes les actions qui sont réalisable avec le script.
