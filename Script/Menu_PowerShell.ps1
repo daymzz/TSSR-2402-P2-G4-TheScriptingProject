@@ -165,6 +165,59 @@ function ActionSysteme {
 
 function ActionRepertoire {
 while ($true) {
+    function createDossier {
+        param(
+            [string]$createDir,
+            [string]$pathDir
+        )
+        try {
+            New-Item -Path "$pathDir\createDir" -ItemType Directory -ErrorAction SilentlyContinue
+            Write-Host "Répertoire $createDir créé"
+        }
+        catch {
+            Write-Host "erreur, verifier que le chemin soit bien saisi"
+            return
+        }
+        $pathDir = Read-Host "Veuillez saisir un chemin :"
+        $createDir = Read-Host "Veuillez saisir le nom du dossier a créer :"
+        #modifier dossier
+    }
+    function modifyDossier {
+        param(
+            [string]$modifyDir,
+            [string]$pathModifyDir,
+            [string]$newNameDir
+        )
+        try {
+            Rename-Item -Path "$pathModifyDir$modifyDir" $newNameDir
+            Write-Host "Répertoire $modifyDir a été modifié en $newName"
+        }
+        catch {
+            Write-Host "erreur, verifier que le chemin soit bien saisi"
+            return
+        }
+        $pathModifyDir = Read-Host "Veuillez saisir un chemin :"
+        $modifyDir = Read-Host "Veuillez saisir le nom du dossier a modifer :"
+        $newNameDir = Read-Host "Veuillez saisir le nouveau nom :"
+    }
+    function deleteDossier {
+        param(
+            [string]$suppDir,
+            [string]$pathSuppDir
+        )
+        try {
+            Remove-Item -Path "$pathSuppDir$suppDir" -Recurse -Force
+            Write-Host "Répertoire $suppDir est supprimé"
+        }
+        catch {
+            Write-Host "erreur, verifier que le chemin soit bien saisi"
+            return
+        }
+        $pathSuppDir = Read-Host "Veuillez saisir un chemin :"
+        $suppDir = Read-Host "Veuillez saisir le nom du dossier a supprimer :"
+    }
+
+
     # Affiche un menu 
     Write-Output ""
     Write-Output "1 - création répertoire"
@@ -176,15 +229,15 @@ while ($true) {
     switch ($action) {
         "1" {
             # création répertoire
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { New-Item -Path $chemin -ItemType Directory} -Credential $Credential
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock {createDossier } -Credential $Credential
         }
         "2" {
             # suppression de répertoire :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Remove-Item -Path $chemin -Recurse -Force} -Credential $Credential
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { deleteDossier} -Credential $Credential
         }
         "3" {
             # modifier un repertoire :
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Rename-Item -Path C:\chemin\du\repertoir renomer } -Credential $Credential
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { modifyDossier} -Credential $Credential
         }
         "4" {
             Write-Output "Fin du script."
