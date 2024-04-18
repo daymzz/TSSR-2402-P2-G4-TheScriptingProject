@@ -355,11 +355,11 @@ function ActionBureauADistance {
     
 }
 
-function InformationUtilisateur {
+function Information-Utilisateur {
     
 }
 
-function InformationSysteme {
+function Information-Systeme {
         #Demande l'adresse IP distant
     $iPDistant = Read-Host "Ip ordinateur distant"
     # Demande les informations Credential (c'est le nom du compte d'en face"
