@@ -86,20 +86,13 @@ Lorsque vous lancerez le script, vous tomberez sur le premier menu ci-dessous.
 ![2024-04-10 15_37_45-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/7a204afc-c9ef-455e-8e85-a919a07e8fc2)
 
 
-Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
+Comme visible dans l'image ci-dessus, vous avez le choix entre 2 menus.
 
+Le premier menu **`Action`** vous permettra d'effectuer des actions directement sur l'ordinateur ciblé.
 
-Le premier menu **``Action``** vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
+Le deuxième menu **`Informations`** vous permettra de recueillir des informations sur la machine que vous souhaitez utiliser.
 
-
-
-
-
-
-Le deuxième menu **``Informations``** vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
-
-
-On commence par se connecter à la machine cible. Pour cela, il faut lui fournir son adresse IP et le nom d'utilisateur en selectionnant le menu **``Connexion``**
+Nous débutons en nous connectant à la machine cible. Pour ce faire, veuillez fournir son adresse IP et le nom d'utilisateur en sélectionnant le menu **`Connexion`**.
 
 
 ![2024-04-17 10_17_33-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/8dc627b3-8cb1-4fb2-8126-1c99597459fb)
