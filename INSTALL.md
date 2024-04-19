@@ -141,9 +141,6 @@ Ces étapes devraient vous permettre de préparer et configurer votre poste clie
      sudo systemctl restart sysstat
      ```
 
-
-### FAQ :
-
 ### FAQ :
 
 **Q : Comment vérifier si OpenSSH est correctement installé et actif sur ma machine ?**
