@@ -29,7 +29,7 @@ Dernière mise à jour du Document : **19 Avril 2024**
 
 ### Introduction
 
-Le script pour actions à distance sur un PC est conçu pour permettre l'exécution de diverses actions et la collecte d'informations sur un ordinateur distant. Cette documentation fournit des instructions pour installer, configurer et utiliser le script de manière efficace.
+Le script conçu pour les actions à distance sur un PC permet d'exécuter diverses actions et de recueillir des informations sur un ordinateur distant. Cette documentation fournit des instructions pour installer, configurer et utiliser le script de manière efficace.
 
 ### Prérequis
 
