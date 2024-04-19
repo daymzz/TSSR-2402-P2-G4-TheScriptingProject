@@ -14,8 +14,8 @@ Dernière mise à jour du Document : **19 Avril 2024**
 
 ### 3. Découvrir les fonctionnalités du script
 
-#### 1. Linux
-#### 2. Windows
+#### - Linux
+#### - Windows
  
 
 ### 4. FAQ
