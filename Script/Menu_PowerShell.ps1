@@ -1,4 +1,3 @@
-
 function ActionCompte {
     while ($true) {
     # Affiche un menu des actions à réaliser
@@ -390,9 +389,9 @@ function Information-Systeme {
             }
             "3" {
             # date de derniere conneSleep 5ion d'un utilisateur
-            Clear-Host
-            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalUser -Name $using:compteDistant | Select-Object LastLogon } -Credential $Credential
-            Start-Sleep -Seconds 5
+                Clear-Host
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalUser -Name $using:compteDistant | Select-Object LastLogon } -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "4" {
                 #    Historique des commandes 5écutées par l'utilisateur :
@@ -403,6 +402,7 @@ function Information-Systeme {
             "5" {
                 # Droits/permissions de l’utilisateur sur un dossier :
                 $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -Credential $Credential -ScriptBlock {
                     Param($path)
                     Get-Acl $path | Select-Object -ExpandProperty Access
@@ -412,6 +412,7 @@ function Information-Systeme {
             "6" {
                 #   Droits/permissions de l’utilisateur sur un fichier :
                 $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -Credential $Credential -ScriptBlock {
                     Param($path)
                     Get-Acl $path | Select-Object -ExpandProperty Access
@@ -420,57 +421,68 @@ function Information-Systeme {
             }
             "7" {
                 #   Version de l'OS : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "8" {
                 #   Nombre de disques : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object -ExpandProperty Count } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "9" {
                 #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieuStart-Sleep -Seconds5
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Get-Partition | Select-Object DiskNumber, PartitionNumber, DriveLetter, FileSystemLabel, Size } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "10" {
                 #   Espace disque restant par partition/volume : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, @{Name='FreeSpace'; Expression={[math]::Round($_.SizeRemaining / 1GB, 2)}}} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "11" {
             #   Nom et espace disque d'un dossier (nom de dossier demandé) :
                 $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-ChildItem $using:Chemin -Recurse | Measure-Object -Property Length -Sum | Select-Object @{Name='TotalSize'; Expression={[math]::Round($_.Sum / 1GB, 2)}} } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "12" {
                 #   Liste des lecteurs montés (disque, CD, etc.) :ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSDrive | Where-Object {$_.Provider -match "FileSystem"}} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "13" {
             #  Nombre d'interfaces : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Measure-Object | Select-Object Count} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "14" {
             #   Adresse IP de chaque interface : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "15" {
             #   Adresse Mac : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Select-Object Name, MacAddress} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "16" {
                 #   Liste des ports ouverts : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "17" {
             #    Statut du pare-feu : ok
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetFirewallProfile | Select-Object Name, Enabled} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
