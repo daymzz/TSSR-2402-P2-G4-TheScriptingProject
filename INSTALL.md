@@ -156,4 +156,4 @@ A : Pour Ubuntu, vous pouvez utiliser `netplan` ou éditer directement les fichi
 A : Après avoir installé `sysstat`, assurez-vous que la collecte de données est activée en modifiant le fichier `/etc/default/sysstat` de `ENABLED="false"` à `ENABLED="true"` et redémarrez le service avec `sudo systemctl restart sysstat`.
 
 
-## Documentation utilisateur
+
