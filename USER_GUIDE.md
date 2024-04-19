@@ -81,7 +81,7 @@ La documentation de base fournie ici devrait vous permettre d'installer, de conf
 
 
 
-Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
+Lorsque vous lancerez le script, vous tomberez sur le premier menu ci-dessous. 
 
 ![2024-04-10 15_37_45-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/7a204afc-c9ef-455e-8e85-a919a07e8fc2)
 
