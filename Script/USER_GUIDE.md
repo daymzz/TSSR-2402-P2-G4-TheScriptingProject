@@ -174,6 +174,16 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 ### **2. Windows** 
 
 
+En premier temps vous allez vous connecter :
+
+Vous allez entrer le nom de l'utilisateur ciblé
+L'IP de celui-ci 
+Le compte **Administrator**
+
+
+
+![2024-04-19 11_16_59-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/758358f6-e629-48e0-93c5-ca35cbf67ae1)
+
 
 
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
