@@ -401,16 +401,22 @@ function Information-Systeme {
                 Start-Sleep -Seconds 5
             }
             "5" {
-                #   Droits/permissions de l’utilisateur sur un dossier : a revoir
-                Read-Host : $folderPath "Entre le chemin complet "
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { (Get-Acl $using:folderPath).Access } -Credential $Credential
-                Start-Sleep -Seconds 5
+                # Droits/permissions de l’utilisateur sur un dossier :
+                $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Invoke-Command -ComputerName $iPDistant -Credential $Credential -ScriptBlock {
+                    Param($path)
+                    Get-Acl $path | Select-Object -ExpandProperty Access
+                } -ArgumentList $Chemin
+                Sleep 5
             }
             "6" {
                 #   Droits/permissions de l’utilisateur sur un fichier :
-                Read-Host : $filePath "Entre le chemin complet "
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock {   (Get-Acl $using:filePath).Access } -Credential $Credential
-            Start-Sleep -Seconds 5
+                $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Invoke-Command -ComputerName $iPDistant -Credential $Credential -ScriptBlock {
+                    Param($path)
+                    Get-Acl $path | Select-Object -ExpandProperty Access
+                } -ArgumentList $Chemin
+                Sleep 5
             }
             "7" {
                 #   Version de l'OS : ok
@@ -434,7 +440,8 @@ function Information-Systeme {
             }
             "11" {
             #   Nom et espace disque d'un dossier (nom de dossier demandé) :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-ChildItem $using:folderPath -Recurse | Measure-Object -Property Length -Sum | Select-Object @{Name='TotalSize'; Expression={[math]::Round($_.Sum / 1GB, 2)}} } -Credential $Credential
+                $Chemin = Read-Host "Entrez le chemin complet du dossier"
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-ChildItem $using:Chemin -Recurse | Measure-Object -Property Length -Sum | Select-Object @{Name='TotalSize'; Expression={[math]::Round($_.Sum / 1GB, 2)}} } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "12" {
