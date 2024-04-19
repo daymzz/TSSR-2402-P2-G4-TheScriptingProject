@@ -8,26 +8,25 @@ Dernière mise à jour du Document : **17 Avril 2024**
 
 ## **Sommaire**
 
-1. Pré-requis
+### 1. Pré-requis
 
-2. Démarrage et première connexion
+### 2. Démarrage et première connexion
 
-3. Découvrir les fonctionnalités du script
+### 3. Découvrir les fonctionnalités du script
 
-1. Linux
-2. Windows
+#### 1. Linux
+#### 2. Windows
  
 
-4. FAQ
-
-
-
-
+### 4. FAQ
 
 
 
 ## **1. Prérequis**
+
+
 ## **2. Démarrage et première connexion**
+
 ### Introduction
 
 Le script pour actions à distance sur un PC est conçu pour permettre l'exécution de diverses actions et la collecte d'informations sur un ordinateur distant. Cette documentation fournit des instructions pour installer, configurer et utiliser le script de manière efficace.
@@ -74,7 +73,12 @@ La documentation de base fournie ici devrait vous permettre d'installer, de conf
 
 ## **3. Découvrir les fonctionnalités du script**
 
+
+
+
 ### **1. Linux** 
+
+
 
 
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
@@ -168,6 +172,8 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 
 
 ### **2. Windows** 
+
+
 
 
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
