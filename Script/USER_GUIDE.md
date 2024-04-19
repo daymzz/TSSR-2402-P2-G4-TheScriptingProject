@@ -18,9 +18,12 @@ Dernière mise à jour du Document : **17 Avril 2024**
 2. Windows
  
 
-5. 
+4. FAQ
 
-6. FAQ
+
+
+
+
 
 
 ## **1. Prérequis**
