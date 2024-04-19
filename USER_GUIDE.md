@@ -188,7 +188,7 @@ Le premier menu **``Action``** vous permettra d'effectuer des actions directemen
 
 Le deuxième menu **``Informations``** vous permettra de recueillir des informations sur la machine que vous souhaitez utiliser.
 
-Explorons pour commencer le menu **``Action``**.
+Explorons pour commencer le menu **``Action``** ci-dessous.
 
 Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
 
@@ -254,12 +254,12 @@ Le menu **``Action Bureau à Distance à distance``**
 
 
 
-Voila toutes les actions qui sont réalisable avec le script.
+Voici toutes les actions qui sont réalisable avec le script.
 
 
 
 
-Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné son nom d'utilisateur.
+Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné votre nom d'utilisateur.
 
 
 
@@ -276,7 +276,7 @@ Ce script PowerShell est conçu pour permettre l'administration à distance d'un
 
 ### **Quels sont les prérequis pour exécuter ce script ?**
 
-Vous devez disposer d'une machine locale exécutant Windows avec PowerShell. De plus, vous devez avoir des autorisations suffisantes pour exécuter des commandes à distance sur la machine cible.
+Vous devez disposer d'une machine locale exécutant Windows avec PowerShell 7. De plus, vous devez avoir des autorisations suffisantes pour exécuter des commandes à distance sur la machine cible.
 
 ### **Comment exécuter le script ?**
 
