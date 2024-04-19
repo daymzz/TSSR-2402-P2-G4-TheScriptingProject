@@ -88,11 +88,11 @@ Lorsque vous lancerez le script, vous tomberez sur le premier menu ci-dessous.
 
 Comme visible dans l'image ci-dessus, vous avez le choix entre 2 menus.
 
-Le premier menu **`Action`** vous permettra d'effectuer des actions directement sur l'ordinateur ciblé.
+Le premier menu **``Action``** vous permettra d'effectuer des actions directement sur l'ordinateur ciblé.
 
-Le deuxième menu **`Informations`** vous permettra de recueillir des informations sur la machine que vous souhaitez utiliser.
+Le deuxième menu **``Informations``** vous permettra de recueillir des informations sur la machine que vous souhaitez utiliser.
 
-Nous débutons en nous connectant à la machine cible. Pour ce faire, veuillez fournir son adresse IP et le nom d'utilisateur en sélectionnant le menu **`Connexion`**.
+Nous débutons en nous connectant à la machine cible. Pour ce faire, veuillez fournir son adresse IP et le nom d'utilisateur en sélectionnant le menu **``Connexion``**.
 
 
 ![2024-04-17 10_17_33-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/8dc627b3-8cb1-4fb2-8126-1c99597459fb)
@@ -102,9 +102,9 @@ Nous débutons en nous connectant à la machine cible. Pour ce faire, veuillez f
 
 
 
-Explorons pour commencer le menu **``Action``**
+Commençons par explorer le menu **``Action``**.
 
-Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
+Le menu **``Action``** comprend six sous-menus permettant d'effectuer des actions sur le PC cible.
 
 ![2024-04-17 10_17_55-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/9e322eb2-148a-4175-8723-eab194039b36)
 
@@ -153,7 +153,7 @@ Voila toutes les actions qui sont réalisable avec le script.
 
 
 
-Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné son nom d'utilisateur.
+Le menu **``Information``** permet d'accéder à diverses informations personnelles après avoir renseigné votre nom d'utilisateur.
 
 ![2024-04-17 11_27_46-SRVLX01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/a5f2ea7e-3d25-4d6e-9c5d-d689d0b0ec97)
 
