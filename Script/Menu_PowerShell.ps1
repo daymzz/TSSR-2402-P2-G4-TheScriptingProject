@@ -377,60 +377,64 @@ function Information-Systeme {
         switch ($action) {
             "1" {
             #   Liste des sessions ouvertes par l'utilisateur :
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name $using:compteDistant| Select-Object Enabled  } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "2" {
                 # Groupe d’appartenance d’un utilisateur :
+                Clear-Host
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalGroupMember -Member $using:compteDistant | Select-Object -ExpandProperty Name} -Credential $Credential
                 Start-Sleep -Seconds 5
                 
             }
             "3" {
             # date de derniere conneSleep 5ion d'un utilisateur
+            Clear-Host
             Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalUser -Name $using:compteDistant | Select-Object LastLogon } -Credential $Credential
             Start-Sleep -Seconds 5
             }
             "4" {
                 #    Historique des commandes 5écutées par l'utilisateur :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-History $using:compteDistant} -Credential $Credential
+                Clear-Host
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Content -Path $env:APPDATA\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "5" {
                 #   Droits/permissions de l’utilisateur sur un dossier : a revoir
-                Read-Host : $chemin "Entre le chemin complet "
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path $using:chemin | Format-List } -Credential $Credential
+                Read-Host : $folderPath "Entre le chemin complet "
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { (Get-Acl $using:folderPath).Access } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "6" {
                 #   Droits/permissions de l’utilisateur sur un fichier :
-                Read-Host : $chemin "Entre le chemin complet "
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path $using:chemin | Format-List } -Credential $Credential
+                Read-Host : $filePath "Entre le chemin complet "
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock {   (Get-Acl $using:filePath).Access } -Credential $Credential
             Start-Sleep -Seconds 5
             }
             "7" {
                 #   Version de l'OS : ok
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { $osInfo = Get-CimInstance -ClassName Win32_OperatingSystem Write-Output "Nom OS : $($osInfo.Caption)" Write-Output "Version OS : $($osInfo.Version)"} -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "8" {
                 #   Nombre de disques : ok
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object Count} -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object -ExpandProperty Count } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "9" {
                 #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieuStart-Sleep -Seconds5
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Partition | Select-Object DiskNumber, Name, FileSystem, Size } -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Get-Partition | Select-Object DiskNumber, PartitionNumber, DriveLetter, FileSystemLabel, Size } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "10" {
                 #   Espace disque restant par partition/volume : ok
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, SizeRemaining } -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, @{Name='FreeSpace'; Expression={[math]::Round($_.SizeRemaining / 1GB, 2)}}} -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "11" {
             #   Nom et espace disque d'un dossier (nom de dossier demandé) :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { function: infoDossier } -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-ChildItem $using:folderPath -Recurse | Measure-Object -Property Length -Sum | Select-Object @{Name='TotalSize'; Expression={[math]::Round($_.Sum / 1GB, 2)}} } -Credential $Credential
                 Start-Sleep -Seconds 5
             }
             "12" {
