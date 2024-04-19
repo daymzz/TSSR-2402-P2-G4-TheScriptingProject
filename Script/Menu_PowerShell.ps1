@@ -275,7 +275,7 @@ function ActionSecurite {
         }
         "3" {
             Write-Output "Retour menu"
-            retrun
+            return
             sleep 2
         }
         default {
@@ -386,8 +386,6 @@ function Information-Systeme {
         infoDossier  $cheminDossier
     }
 
-
-
     while ($true) {
         # Affiche un menu 
         Clear-Host
@@ -490,70 +488,67 @@ function Information-Systeme {
                 Write-Output "Action non reconnue. Veuillez essayer à nouveau."
             }
         }
-}
-}
-
-
-# Boucle principale du menu
-while ($true) {
-    Afficher-MenuPrincipal
-    Clear-Host
-    Write-Host "=============="
-    Write-Host "Menu Principal"
-    Write-Host "=============="
-    Write-Host "1 - Menu Action"
-    Write-Host "2 - Menu Information"
-    Write-Host "3 - Quitter"
-
-    $choixMenuPrincipal = Read-Host "Entrez votre choix"
-    
-    switch ($choixMenuPrincipal) {
-
-        1 {
-            Clear-Host
-            Write-Host "==============="
-            Write-Host "Menu de Action"
-            Write-Host "==============="
-            Write-Host "1 - Action Utilisateur"
-            Write-Host "2 - Action Groupe"
-            Write-Host "3 - Action Systeme"
-            Write-Host "4 - Action Repertoire"
-            Write-Host "5 - Action Securite"
-            Write-Host "6 - Action Logiciel"
-            Write-Host "7 - Action Bureau a Distance"
-            Write-Host "8 - Quitter"
-            $choixMenuAction = Read-Host "Entrez votre choix"
-            switch ($choixMenuAction) {
-                '1' { ActionCompte }
-                '2' { ActionGroupe }
-                '3' { ActionSysteme }
-                '4' { ActionRepertoire }
-                '5' { ActionSecurite }
-                '6' { ActionLogiciel }
-                '7' { ActionBureauADistance }
-                '8' { return }
-            }
-        }
-
-        2 {
-            Clear-Host
-            Write-Host "==============="
-            Write-Host "Menu d'Information"
-            Write-Host "==============="
-            Write-Host "1 - Information Utilisateur"
-            Write-Host "2 - Information Systeme"
-            Write-Host "3 - Quitter"
-            $choixMenuInformation = Read-Host "Entrez votre choix"
-            switch ($choixMenuInformation) {
-                1 { Information-Utilisateur }
-                2 { Information-Systeme }
-                3 { return }
-            }
-        }
-
-
-        3 {exit}
-
     }
-
 }
+
+
+function menu_principale {
+    while ($true) {
+        Clear-Host
+        Write-Host "=============="
+        Write-Host "Menu Principal"
+        Write-Host "=============="
+        Write-Host "1 - Menu Action"
+        Write-Host "2 - Menu Information"
+        Write-Host "3 - Quitter"
+
+        $choixMenuPrincipal = Read-Host "Entrez votre choix"
+
+        switch ($choixMenuPrincipal) {
+            '1' {
+                menu_action
+            }
+            '2' {
+                Information-Systeme
+            }
+            '3' {
+                exit
+            }
+            default {
+                Write-Host "Choix invalide. Veuillez réessayer."
+            }
+        }
+    }
+}
+
+function menu_action {
+    Clear-Host
+    Write-Host "==============="
+    Write-Host "Menu de Action"
+    Write-Host "==============="
+    Write-Host "1 - Action Utilisateur"
+    Write-Host "2 - Action Groupe"
+    Write-Host "3 - Action Systeme"
+    Write-Host "4 - Action Repertoire"
+    Write-Host "5 - Action Securite"
+    Write-Host "6 - Action Logiciel"
+    Write-Host "7 - Action Bureau à Distance"
+    Write-Host "8 - Quitter"
+    $choixMenuAction = Read-Host "Entrez votre choix"
+    switch ($choixMenuAction) {
+        '1' { ActionCompte }
+        '2' { ActionGroupe }
+        '3' { ActionSysteme }
+        '4' { ActionRepertoire }
+        '5' { ActionSecurite }
+        '6' { ActionLogiciel }
+        '7' { ActionBureauADistance }
+        '8' { return }
+        default {
+            Write-Host "Choix invalide. Veuillez réessayer."
+        }
+    }
+}
+
+
+menu_principale
