@@ -49,7 +49,7 @@ function ActionCompte {
         }
         "5" {
             Write-Output "Retour menu"
-            sleep 2
+            Start-Sleep -Seconds 2
             Return
         }
         default {
@@ -104,7 +104,7 @@ function ActionGroupe {
         "4" {
             Write-Output "Retour"
             return
-            sleep 2
+            Start-Sleep -Seconds 2
         }
         default {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
@@ -147,7 +147,7 @@ function ActionSysteme {
         "5" {
             Write-Output "Fin du script."
             return
-            sleep 2
+            Start-Sleep -Seconds 2
         }
         default {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
@@ -257,7 +257,7 @@ function ActionSecurite {
         "3" {
             Write-Output "Retour menu"
             return
-            sleep 2
+            Start-Sleep -Seconds 2
         }
         default {
             Write-Output "Action non reconnue. Veuillez essayer à nouveau."
@@ -285,7 +285,7 @@ function Chercher-Package {
     if ($packages) {
         Write-Output "Packages trouvés :"
         $packages | Format-Table -Property Name, Version, Source -AutoSize
-        sleep 10
+        Start-Sleep10
     } else {
         Write-Output "Aucun package trouvé."
     }
@@ -377,91 +377,91 @@ function Information-Systeme {
         switch ($action) {
             "1" {
             #   Liste des sessions ouvertes par l'utilisateur :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name wilder | Select-Object Enabled  } -Credential $Credential
-                Sleep 5
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name $using:compteDistant| Select-Object Enabled  } -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "2" {
                 # Groupe d’appartenance d’un utilisateur :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-localUser -name wilder | Select-Object ObjectClass } -Credential $Credential
-                Sleep 5
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalGroupMember -Member $using:compteDistant | Select-Object -ExpandProperty Name} -Credential $Credential
+                Start-Sleep -Seconds 5
+                
             }
             "3" {
             # date de derniere conneSleep 5ion d'un utilisateur
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock {Get-localUser -name wilder | Select-Object LastLogon } -Credential $Credential
-                Sleep 5
+            Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-LocalUser -Name $using:compteDistant | Select-Object LastLogon } -Credential $Credential
+            Start-Sleep -Seconds 5
             }
             "4" {
-                #    Historique des commandes eSleep 5écutées par l'utilisateur :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-History} -Credential $Credential
-                Sleep 5
+                #    Historique des commandes 5écutées par l'utilisateur :
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-History $using:compteDistant} -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "5" {
                 #   Droits/permissions de l’utilisateur sur un dossier : a revoir
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Dossier" | Format-List } -Credential $Credential
-                Sleep 5
+                Read-Host : $chemin "Entre le chemin complet "
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path $using:chemin | Format-List } -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "6" {
                 #   Droits/permissions de l’utilisateur sur un fichier :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path "Chemin\Vers\Fichier" | Format-List
-            } -Credential $Credential
-            Sleep 5
+                Read-Host : $chemin "Entre le chemin complet "
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Acl -Path $using:chemin | Format-List } -Credential $Credential
+            Start-Sleep -Seconds 5
             }
             "7" {
                 #   Version de l'OS : ok
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { $osInfo = Get-CimInstance -ClassName Win32_OperatingSystem
-Write-Output "Nom OS : $($osInfo.Caption)"
-Write-Output "Version OS : $($osInfo.Version)"} -Credential $Credential
-                Sleep 5
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { $osInfo = Get-CimInstance -ClassName Win32_OperatingSystem Write-Output "Nom OS : $($osInfo.Caption)" Write-Output "Version OS : $($osInfo.Version)"} -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "8" {
                 #   Nombre de disques : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Disk | Measure-Object | Select-Object Count} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "9" {
-                #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieuSleep 5
+                #   Partition (nombre, nom, FS, taille) par disque : ok a voir si y a mieuStart-Sleep -Seconds5
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Partition | Select-Object DiskNumber, Name, FileSystem, Size } -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "10" {
                 #   Espace disque restant par partition/volume : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Volume | Select-Object DriveLetter, FileSystemLabel, SizeRemaining } -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "11" {
             #   Nom et espace disque d'un dossier (nom de dossier demandé) :
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { infoDossier } -Credential $Credential
-                Sleep 5
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { function: infoDossier } -Credential $Credential
+                Start-Sleep -Seconds 5
             }
             "12" {
                 #   Liste des lecteurs montés (disque, CD, etc.) :ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-PSDrive | Where-Object {$_.Provider -match "FileSystem"}} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "13" {
             #  Nombre d'interfaces : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Measure-Object | Select-Object Count} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "14" {
             #   Adresse IP de chaque interface : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "15" {
             #   Adresse Mac : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetAdapter | Select-Object Name, MacAddress} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "16" {
                 #   Liste des ports ouverts : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "17" {
             #    Statut du pare-feu : ok
                 Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-NetFirewallProfile | Select-Object Name, Enabled} -Credential $Credential
-                Sleep 5
+                Start-Sleep -Seconds 5
             }
             "0" {
                 Write-Output "Fin du script."
