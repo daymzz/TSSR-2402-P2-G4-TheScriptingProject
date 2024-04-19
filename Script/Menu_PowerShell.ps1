@@ -222,9 +222,9 @@ function ActionRepertoire {
         Clear-Host
         Write-Output ""
         Write-Output "1 - création répertoire"
-        Write-Output "2 - Duppression de répertoire  "
+        Write-Output "2 - Suppression de répertoire  "
         Write-Output "3 - modifier un repertoire"
-        Write-Output "4 - retrour "
+        Write-Output "4 - retour "
         $action = Read-Host "Entrez le numéro de votre choix"
         $cheminApp = Read-Host "Veuillez saisir un chemin :"
         switch ($action) {
