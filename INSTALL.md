@@ -135,11 +135,6 @@ Ces étapes devraient vous permettre de préparer et configurer votre poste clie
      ```bash
      sudo apt install -y sysstat
      ```
-   - Activez la collecte de données pour `sysstat` (par défaut, cela peut être désactivé) :
-     ```bash
-     sudo sed -i 's/ENABLED="false"/ENABLED="true"/' /etc/default/sysstat
-     sudo systemctl restart sysstat
-     ```
 
 ### FAQ :
 
