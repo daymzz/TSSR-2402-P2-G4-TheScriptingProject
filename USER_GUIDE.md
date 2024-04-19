@@ -50,7 +50,7 @@ Avant d'utiliser ce script, assurez-vous que les éléments suivants sont en pla
 2. Naviguez vers le répertoire où se trouve le script.
 3. Exécutez le script en utilisant la commande suivante :
    - Linux : `bash ./script.sh`
-   - Windows : 
+   - Windows : clique droit sur le fichier script et executer avec powershell 7
 
 ### Dépannage
 
