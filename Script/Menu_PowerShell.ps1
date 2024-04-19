@@ -219,6 +219,7 @@ function ActionRepertoire {
 
 
         # Affiche un menu 
+        Clear-Host
         Write-Output ""
         Write-Output "1 - création répertoire"
         Write-Output "2 - Duppression de répertoire  "
@@ -324,6 +325,7 @@ function ActionLogiciel {
     }
     while ($true) {
         # Affiche un menu 
+        Clear-Host
         Write-Output ""
         Write-Output "1 - Installer "
         Write-Output "2 - Désinstaller  "
@@ -388,6 +390,7 @@ function Information-Systeme {
 
     while ($true) {
         # Affiche un menu 
+        Clear-Host
         Write-Output ""
         Write-Output "1 - Liste des sessions ouvertes par l'utilisateur"
         Write-Output "2 - Groupe d’appartenance d’un utilisateur "
