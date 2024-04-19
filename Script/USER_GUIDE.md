@@ -283,4 +283,35 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 
 
 
+## **4. F.A.Q**
+
+
+**Quel est l'objectif de ce script PowerShell ?**
+
+Ce script PowerShell est conçu pour permettre l'administration à distance d'un ordinateur Windows. Il offre une interface conviviale pour exécuter diverses actions telles que la gestion des utilisateurs, des groupes, des logiciels, des dossiers, etc., sur une machine distante.
+
+**Quels sont les prérequis pour exécuter ce script ?**
+
+Vous devez disposer d'une machine locale exécutant Windows avec PowerShell. De plus, vous devez avoir des autorisations suffisantes pour exécuter des commandes à distance sur la machine cible.
+
+**Comment exécuter le script ?**
+
+Téléchargez le script sur votre machine locale, ouvrez PowerShell et exécutez-le en spécifiant les informations requises telles que le nom du compte distant, l'adresse IP de l'ordinateur distant et les informations d'identification administrateur.
+
+**Quelles actions puis-je effectuer avec ce script ?**
+
+Vous pouvez effectuer diverses actions telles que la création, la modification et la suppression des utilisateurs, des groupes, des dossiers, des logiciels, ainsi que des opérations système telles que l'arrêt, le redémarrage et la mise à jour du système.
+
+**Comment gérer les erreurs lors de l'exécution du script ?**
+
+Si vous rencontrez des erreurs, vérifiez d'abord que toutes les conditions préalables sont remplies, telles que l'activation de PowerShell Remoting et les autorisations appropriées. Vérifiez également que les informations saisies sont correctes. Vous pouvez consulter la documentation PowerShell ou rechercher des solutions en ligne pour résoudre les problèmes spécifiques.
+
+**Existe-t-il des bonnes pratiques à suivre lors de l'utilisation de ce script ?**
+
+Oui, quelques bonnes pratiques incluent : vérifier les autorisations avant d'exécuter des commandes système, vérifier deux fois les informations saisies pour éviter les erreurs, et tester d'abord sur des environnements de test avant de déployer sur des environnements de production.
+
+
+
+
+
 
