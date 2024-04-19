@@ -267,28 +267,27 @@ function ActionSecurite {
 
 
 
-# Définition des fonctions principales d'installation et de désinstallation
 function Installer {
-    param (
-        [string]$nameInstallApp
-    )
-    try {
-        Start-Process -FilePath $nameInstallApp -Wait
-        Write-Host "Installation réussie du logiciel: $nameInstallApp"
-    } catch {
-        Write-Host "Erreur! Veuillez vérifier que le fichier et le chemin existent ou qu'ils soient écrits de la bonne manière."
-    }
+    $nomDuPackage = Read-Host "Entrez le nom du package à installer"
+    Install-Package -Name $nomDuPackage -Verbose
 }
 
+# Fonction pour désinstaller un package
 function Desinstaller {
-    param (
-        [string]$nameUninstallApp
-    )
-    try {
-        Start-Process -FilePath $nameUninstallApp -Wait
-        Write-Host "Désinstallation réussie du logiciel: $nameUninstallApp"
-    } catch {
-        Write-Host "Erreur! Veuillez vérifier que le fichier et le chemin existent ou qu'ils soient écrits de la bonne manière."
+    $nomDuPackage = Read-Host "Entrez le nom du package à désinstaller"
+    Uninstall-Package -Name $nomDuPackage -Verbose
+}
+
+# Fonction pour chercher un package
+function Chercher-Package {
+    $nomRecherche = Read-Host "Entrez le début ou le nom complet du package à chercher"
+    $packages = Find-Package -Name $nomRecherche
+    if ($packages) {
+        Write-Output "Packages trouvés :"
+        $packages | Format-Table -Property Name, Version, Source -AutoSize
+        sleep 10
+    } else {
+        Write-Output "Aucun package trouvé."
     }
 }
 
@@ -297,19 +296,21 @@ function ActionLogiciel {
         Clear-Host
         Write-Output "1 - Installer"
         Write-Output "2 - Désinstaller"
-        Write-Output "3 - Retour au menu principal"
+        Write-Output "3 - Chercher un package"
+        Write-Output "4 - Retour au menu principal"
         $action = Read-Host "Entrez le numéro de votre choix"
 
         switch ($action) {
             "1" {
-                $nameInstallApp = Read-Host "Entrez le chemin complet suivi du nom du fichier d'installation"
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock ${function:Installer} -ArgumentList $nameInstallApp -Credential $Credential
+                Invoke-Command -ScriptBlock ${function:Installer}
             }
             "2" {
-                $nameUninstallApp = Read-Host "Entrez le chemin complet suivi du nom du fichier de désinstallation"
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock ${function:Desinstaller} -ArgumentList $nameUninstallApp -Credential $Credential
+                Invoke-Command -ScriptBlock ${function:Desinstaller}
             }
             "3" {
+                Invoke-Command -ScriptBlock ${function:Chercher-Package}
+            }
+            "4" {
                 Write-Output "Fin du script."
                 return
             }
@@ -407,7 +408,9 @@ function Information-Systeme {
             }
             "7" {
                 #   Version de l'OS : ok
-                Invoke-Command -ComputerName $iPDistant -ScriptBlock { Get-Computer OsName, OsVersion} -Credential $Credential
+                Invoke-Command -ComputerName $iPDistant -ScriptBlock { $osInfo = Get-CimInstance -ClassName Win32_OperatingSystem
+Write-Output "Nom OS : $($osInfo.Caption)"
+Write-Output "Version OS : $($osInfo.Version)"} -Credential $Credential
                 Sleep 5
             }
             "8" {
