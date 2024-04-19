@@ -1,7 +1,5 @@
 
 function ActionCompte {
-    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
-    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
     while ($true) {
     # Affiche un menu des actions à réaliser
     Clear-Host
@@ -62,8 +60,6 @@ function ActionCompte {
 }
 
 function ActionGroupe {
-    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
-    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
     while ($true) {
     # Affiche un menu
     Clear-Host
@@ -119,8 +115,6 @@ function ActionGroupe {
 }
 
 function ActionSysteme {
-    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
-    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
     while ($true) {
     # Affiche un menu des actions à réaliser
     Clear-Host
@@ -222,11 +216,10 @@ function ActionRepertoire {
         Clear-Host
         Write-Output ""
         Write-Output "1 - création répertoire"
-        Write-Output "2 - Suppression de répertoire  "
+        Write-Output "2 - Duppression de répertoire  "
         Write-Output "3 - modifier un repertoire"
-        Write-Output "4 - retour "
+        Write-Output "4 - retrour "
         $action = Read-Host "Entrez le numéro de votre choix"
-        $cheminApp = Read-Host "Veuillez saisir un chemin :"
         switch ($action) {
             "1" {
                 # création répertoire
@@ -253,8 +246,6 @@ function ActionRepertoire {
 }
 
 function ActionSecurite {
-    $iPDistant = Read-Host "Entrez l'adresse IP de l'ordinateur distant"
-    $credential = Get-Credential -Message "Veuillez entrer vos identifiants"
     Clear-Host
     Write-Output "Sélectionnez l'action à réaliser sur le pare-feu :"
     Write-Output "1 - Activer le pare-feu"
@@ -363,9 +354,7 @@ function Information-Utilisateur {
 
 function Information-Systeme {
         #Demande l'adresse IP distant
-    $iPDistant = Read-Host "Ip ordinateur distant"
-    # Demande les informations Credential (c'est le nom du compte d'en face"
-    $Credential = Get-Credential
+
 
     function infoDossier { 
         param (
@@ -492,6 +481,7 @@ function Information-Systeme {
 }
 
 
+
 function menu_principale {
     while ($true) {
         Clear-Host
@@ -551,4 +541,9 @@ function menu_action {
 }
 
 
+# Demande les informations Credential (c'est le nom du compte d'en face"
+$compteDistant = Read-Host "Entre le nom du compte distant"
+$iPDistant = Read-Host "Ip ordinateur distant"
+$Credential = Get-Credential -Credential $compteDistant
+$Admin = Read-Host "Veuillez vous identifiez administrateur"
 menu_principale
