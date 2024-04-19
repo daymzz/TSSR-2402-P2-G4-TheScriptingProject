@@ -170,6 +170,9 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
 
 
+![2024-04-19 09_39_40-VirtualBoxVM](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/33f24834-a291-4206-9a34-9e13e5b91c91)
+
+
 
 
 Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
@@ -178,64 +181,72 @@ Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
 Le premier menu **``Action``** vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
 
 
-
-
-
-
 Le deuxième menu **``Informations``** vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
-
-
-On commence par se connecter à la machine cible. Pour cela, il faut lui fournir son adresse IP et le nom d'utilisateur en selectionnant le menu **``Connexion``**
-
-
-
-
-
-
-
 
 
 Explorons pour commencer le menu **``Action``**
 
+
 Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
 
 
+![2024-04-19 09_40_11-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/99f6072e-d97b-47fd-90a5-78a2b6bdb9ab)
 
 
 
-Le menu **``Gestion des utilisateurs``** 
+Le menu **``Action Utilisateur``** 
 
 
-
-
-
-
-Le menu **``Gestion des groupes``**
-
+![2024-04-19 09_40_55-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/84d05067-9926-40a1-bf8a-12f4e5bea933)
 
 
 
 
-Le menu **``Gestion du système``**
+Le menu **``Action Groupe``**
+
+
+![2024-04-19 09_41_39-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/684a7db6-6690-4274-88d1-ed2934d15b5c)
+
+
+
+Le menu **``Action Système``**
+
+
+![2024-04-19 09_42_21-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/4e97eac7-2d99-49dc-b69c-b6e8f88bd174)
+
+
+
+Le menu **``Action Répertoire``**
+
+
+
+![2024-04-19 09_53_16-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/94f4e23a-0e37-412b-8d3b-0191c891621a)
+
+
+
+Le menu **``Action sécurité``**
+
+
+
+![2024-04-19 09_43_13-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/fc9db26d-4ded-44d3-9aaa-56f6ceaaf54d)
 
 
 
 
-
-Le menu **``Gestion des répertoires``**
-
+Le menu **``Action Logiciel``**
 
 
 
-
-Le menu **``Gestion prise en main à distance``**
+![2024-04-19 09_55_48-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/c82bbc50-a25c-4557-8cab-3cda586f9cd6)
 
 
 
 
+Le menu **``Action Bureau à Distance à distance``**
 
 
-Le menu **``Gestion sécurité``**
+
+
 
 
 
@@ -249,6 +260,7 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 
 
 
+![2024-04-19 10_08_25-SRVWIN01  En fonction  - Oracle VM VirtualBox](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/b2d4c586-7560-445a-82bf-fa22a5ea6872)
 
 
 
