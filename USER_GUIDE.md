@@ -167,11 +167,7 @@ Le menu **``Information``** permet d'accéder à diverses informations personnel
 ### **2. Windows** 
 
 
-En premier temps vous allez vous connecter :
-
-Vous allez entrer le nom de l'utilisateur ciblé
-L'IP de celui-ci 
-Le compte **Administrator**
+En premier lieu, vous allez vous connecter en entrant le nom de l'utilisateur ciblé, son adresse IP, ainsi que le compte **``Administrator``**.
 
 
 
@@ -179,25 +175,20 @@ Le compte **Administrator**
 
 
 
-Lorsque que vous allez lancer le script vous allez tombé sur le premier menu ci dessous 
+Lorsque vous lancerez le script, vous tomberez sur le premier menu ci-dessous. 
 
 
 ![2024-04-19 09_39_40-VirtualBoxVM](https://github.com/WildCodeSchool/TSSR-2402-P2-G4-TheScriptingProject/assets/161461625/33f24834-a291-4206-9a34-9e13e5b91c91)
 
 
 
+Comme visible dans l'image ci-dessus, vous avez le choix entre 2 menus.
 
-Comme visible à l'image ci dessus vous avez le choix entre 2 menus.
+Le premier menu **``Action``** vous permettra d'effectuer des actions directement sur l'ordinateur ciblé.
 
+Le deuxième menu **``Informations``** vous permettra de recueillir des informations sur la machine que vous souhaitez utiliser.
 
-Le premier menu **``Action``** vous permetttra d'effectuer des actions directement au sein de l'ordinateur ciblé.
-
-
-Le deuxième menu **``Informations``** vous permettra de prendre des informations de la machine que vous souhaitez utiliser.
-
-
-Explorons pour commencer le menu **``Action``**
-
+Explorons pour commencer le menu **``Action``**.
 
 Le menu **``Action``** est composé de six sous-menus permettant de réaliser des actions sur le PC cible.
 
