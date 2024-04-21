@@ -104,7 +104,7 @@
 7. **Création d'un compte administratif local**:
    - Créez un compte identique au compte administrateur du serveur et ajoutez-le au groupe des administrateurs locaux 
 
-Ces étapes devraient vous permettre de préparer et configurer votre poste client Windows 10 pour une gestion à distance et locale efficace. Veuillez ajuster les paramètres de sécurité selon les politiques de votre organisation.
+Ces étapes devraient vous permettre de préparer et configurer votre poste client Windows 10 pour une gestion à distance et locale efficace. Veuillez ajuster les paramètres de sécurité conformément aux politiques de votre organisation.
 
 #### Poste Client Ubuntu 22.04 LTS
 
