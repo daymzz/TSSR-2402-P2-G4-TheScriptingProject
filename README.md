@@ -6,31 +6,29 @@ ___
 
 ___
 
-1. Présentation du projet et objectif  
+1. Présentation du projet et objectifs  
 2. Mise en contexte  
 3. Membres du projet  
 4. Choix techniques  
-5. Difficultés trouvées  
+5. Difficultés rencontrées  
 6. Solutions trouvées  
 7. Améliorations possibles  
 
-### 1. PRESENTATION DU PROJET ET OBJECTIF  
+### 1. PRESENTATION DU PROJET ET OBJECTIFS  
 
 ___
 
-1- Création un script fonctionnel et intuitif, effectuant des tâches ou des requêtes sur une ou des machines distantes sous un même OS sur un réseau local.
+- Création d'un script fonctionnel et intuitif, capable d'exécuter des tâches ou des requêtes sur une ou plusieurs machines distantes sous le même système d'exploitation, sur un réseau local.
 
-2- Faire fonctionner notre script pour agir ou interroger une machine distante en reseau local mais ***avec des OS différentes***
+- Faire fonctionner notre script pour agir ou interroger une machine distante en reseau local, même si celles-ci utilisent des ***systèmes d'exploitation différents***.
 
 ### 2.  MISE EN CONTEXTE  
 
 ___
 
-Mise en place d'un script "Bash" pour interroger ou effectuer des actions sur poste client UBUNTU depuis un serveur DEBIAN.  
-
-ET  
-
-Mise en place d'un script "PowerShell" pour interroger ou effectuer des actions sur un poste client WINDOWS 10 PRO depuis un serveur WINDOWS SERVER 2022.
+- Mise en place d'un script "**Bash**" permettant d'interroger ou d'effectuer des actions sur poste client **UBUNTU** depuis un serveur **DEBIAN**.  
+ 
+- Mise en place d'un script "**PowerShell**" pour interroger ou effectuer des actions sur un poste client **WINDOWS 10 PRO** depuis un serveur **WINDOWS SERVER 2022**.
 
 ### 3. MEMBRES DU PROJET  
 
@@ -43,7 +41,7 @@ L'équipe du projet est composé de :
 - KAMARA Maxime
 - LEGAY Damien  
 
-Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
+Durant les 4 prochaines semaines, les rôles et tâches de chacun changeront.
 
 ***SEMAINE 1***  
 
@@ -58,9 +56,9 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
     |     *MEMBRE*     |            *TÂCHES*            |
     |       :---:      |              :---:             |
     |  CAULIER Charles |          Documentation         |
-    | HORTHOLARY Yanis |    Commentaire et code Bash    |
-    |   KAMARA Maxime  | Commentaire et code PowerShell |
-    |   LEGAY Damien   |      Arborescence menu Bash    |
+    | HORTHOLARY Yanis |    Commentaire et code en Bash    |
+    |   KAMARA Maxime  | Commentaire et code en PowerShell |
+    |   LEGAY Damien   |   Arborescence du menu code Bash  |
 
 ***SEMAINE 2***
 
@@ -74,10 +72,10 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
     |     *MEMBRE*     |                                        *TÂCHES*                                 |
     |       :---:      |                                          :---:                                  |
-    |  CAULIER Charles |                   Documentation, code bash et mise en réseau                    |
-    | HORTHOLARY Yanis |                   Documentation, code bash et mise en réseau                    |
-    |   KAMARA Maxime  |               Documentation, script powerShell et mise en réseau                |
-    |   LEGAY Damien   | Documentation, intégrer le squelette bash, commencer les test et mise en réseau |  
+    |  CAULIER Charles |                   Documentation, code en bash et mise en réseau                    |
+    | HORTHOLARY Yanis |                   Documentation, code en bash et mise en réseau                    |
+    |   KAMARA Maxime  |               Documentation, script en powerShell et mise en réseau                |
+    |   LEGAY Damien   | Documentation, intégrer le squelette bash, commencer les tests et mise en réseau |  
 
 ***SEMAINE 3***
 
@@ -91,10 +89,10 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
     |     *MEMBRE*     |                                     *TÂCHES*                                  |
     |       :---:      |                                      :---:                                    |
-    |  CAULIER Charles |            Gestion des fichiers logs et test code bash , Powershell           |
-    | HORTHOLARY Yanis |           Documentation, tests et finalisation du code Bash, PowerShell       |
-    |   KAMARA Maxime  |          Documentation, implémentation du SSH, tests du code Bash, Powershell |
-    |   LEGAY Damien   |          Documentation,  tests et finalisation du code Bash, Powershell       |  
+    |  CAULIER Charles |            Gestion des fichiers logs et test code en bash et Powershell           |
+    | HORTHOLARY Yanis |           Documentation, tests et finalisation du code en Bash et PowerShell       |
+    |   KAMARA Maxime  |          Documentation, implémentation du SSH, tests du code en Bash et Powershell |
+    |   LEGAY Damien   |          Documentation,  tests et finalisation du code en Bash et Powershell       |  
 
 ***SEMAINE 4***
 
@@ -108,10 +106,10 @@ Durant les 4 prochaines semaines les rôles et tâches de chacun changeront.
 
     |     *MEMBRE*     |            *TÂCHES*            |
     |       :---:      |              :---:             |
-    |  CAULIER Charles |      Gestion des fichiers logS, test code Powershell et documentation       |
-    | HORTHOLARY Yanis |          Documentation, tests et finalisation du code PowerShell            |
-    |   KAMARA Maxime  |   Documentation, finalisation du code PowerShell, tests du code Powershell  |
-    |   LEGAY Damien   |   Documentation, finalisation du code PowerShell, tests du code Powershell  |  
+    |  CAULIER Charles |      Gestion des fichiers logS, test du code Powershell et documentation       |
+    | HORTHOLARY Yanis |          Documentation, finalisation et tests du code PowerShell            |
+    |   KAMARA Maxime  |   Documentation, finalisation et tests du code PowerShell  |
+    |   LEGAY Damien   |   Documentation, finalisation et tests du code PowerShell  |  
 
 **SM** = *Scrum Master*
 **PO** = *Product Owner*
