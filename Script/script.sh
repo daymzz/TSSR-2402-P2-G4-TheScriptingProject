@@ -370,7 +370,7 @@ function gestion_information() {
         lastmodif_user=""
         read -p "Entrez le nom d'utilisateur : " lastmodif_user
         echo "Affiche la date de dernière modification du mot de passe pour $lastmodif_user"
-	    ssh $utilisateur@$ip "sudo -S chage -l $lastmodif_user" >>
+	    ssh $utilisateur@$ip "sudo -S chage -l $lastmodif_user"
 	    sleep 5
         ssh $utilisateur@$ip "sudo -S chage -l $lastmodif_user" >> "$fichier"
         echo "$(date +%F-%X) - $USER - Date de dernière modification du mot de passe de $lastmodif_user" >> /var/log/log_evt.log
